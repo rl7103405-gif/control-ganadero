@@ -1,0 +1,4 @@
+# Mientras la página sea borrador, nada se indexa (además del noindex de index.html).
+# El día de publicar, ver PUBLICAR.md.
+User-agent: *
+Disallow: /

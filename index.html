@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- SEGURIDAD
+     GitHub Pages no deja poner cabeceras HTTP, así que la política va aquí.
+     Solo corre JavaScript de este mismo sitio (script.js): ningún script en
+     línea, ningún tercero. Si algún día se agrega algo de fuera (Clarity,
+     Analytics), hay que abrirle la puerta aquí a propósito, no por accidente. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
+<!-- ⚠️ BORRAR ESTA LÍNEA EL DÍA QUE SE PUBLIQUE DE VERDAD (ver PUBLICAR.md).
+     Mientras el nombre no esté revisado en el IMPI y el número de WhatsApp no
+     esté puesto, la página no debe aparecer en Google: se llega solo por link. -->
+<meta name="robots" content="noindex, nofollow">
+
+<title>Control ganadero para tu rancho</title>
+<meta name="description" content="Control de ganado en el teléfono: cada animal con su historia, pendientes de la semana, pesos, plan sanitario e inventario. Nosotros cargamos tu rancho y capacitamos a tu gente.">
+<meta name="theme-color" content="#181613">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Control ganadero para tu rancho">
+<meta property="og:description" content="Tu ganado en el teléfono, y tu rancho cargado y funcionando. Nosotros hacemos la captura y la capacitación.">
+<meta property="og:locale" content="es_MX">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23151310'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%23D08A4E' stroke-width='2.4'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%23D08A4E'/%3E%3C/svg%3E">
+
+<link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<!-- ============================================================
+     NAVEGACIÓN
+     ============================================================ -->
+<div class="avance" id="avance" aria-hidden="true"></div>
+<header class="nav">
+  <div class="contenedor nav__fila">
+    <a class="marca" href="#inicio" aria-label="Inicio">
+      <svg class="marca__ojo" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3.5c5 0 8.5 3.6 8.5 8.2 0 3-1.4 5-2.6 7.4-1 2-1.4 4.2-1.9 6.4-.4 1.8-1.9 3-4 3s-3.6-1.2-4-3c-.5-2.2-.9-4.4-1.9-6.4-1.2-2.4-2.6-4.4-2.6-7.4 0-4.6 3.500-8.2 8.500-8.2z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="11.5" r="2.6" fill="currentColor"/></svg>
+      <span data-marca>Control ganadero</span>
+    </a>
+    <nav aria-label="Secciones">
+      <ul class="nav__ligas">
+        <li><a href="#que-hace">Qué hace</a></li>
+        <li><a href="#como">Cómo trabajamos</a></li>
+        <li><a href="#precio">Precio</a></li>
+        <li><a href="#preguntas">Preguntas</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--claro btn--chico" href="#contacto">Pedir informes</a>
+  </div>
+</header>
+
+<main id="contenido">
+
+<!-- ============================================================
+     PORTADA
+     ============================================================ -->
+<section class="portada" id="inicio">
+  <div class="contenedor portada__centro">
+    <p class="rotulo">Para ranchos de cría y engorda</p>
+    <h1><span class="pal"><span class="pal__in pal--1">Tu</span></span> <span class="pal"><span class="pal__in pal--2">rancho</span></span> <span class="pal"><span class="pal__in pal--3">entero,</span></span> <em><span class="pal"><span class="pal__in pal--4">en</span></span> <span class="pal"><span class="pal__in pal--5">la</span></span> <span class="pal"><span class="pal__in pal--6">mano</span></span></em><span class="pal"><span class="pal__in pal--6">.</span></span></h1>
+    <p class="portada__texto">Cada animal con su historia. Y no te dejamos una aplicación para que la llenes tú: <strong>cargamos tu ganado y capacitamos a tu gente</strong>.</p>
+    <div class="portada__botones">
+      <a class="btn btn--claro" href="#contacto">Quiero verla en mi rancho</a>
+      <a class="liga-flecha" href="#que-hace">Ver cómo se ve <span aria-hidden="true">↓</span></a>
+    </div>
+  </div>
+  <figure class="telefono telefono--portada" id="telefono-portada">
+    <img src="assets/demo-01-rancho.png" width="390" height="844" alt="Pantalla principal de la aplicación: 150 cabezas, 48 cargadas, 2 por parir, 47 crías, y un aviso de 11 cosas por atender.">
+  </figure>
+</section>
+
+<!-- ============================================================
+     QUÉ HACE — solo lo que la aplicación ya hace hoy
+     ============================================================ -->
+<section class="historia" id="que-hace">
+  <div class="contenedor">
+    <p class="rotulo">Qué hace</p>
+    <h2>Lo que hoy vive en una libreta, <em>a la mano</em>.</h2>
+  </div>
+  <div class="contenedor historia__rejilla">
+    <div class="historia__pasos">
+      <article class="paso" data-pantalla="0">
+        <span class="paso__num">01</span>
+        <h3>El rancho, de un vistazo</h3>
+        <p>Un cuadro por animal. <strong>El color dice cómo está, y el símbolo también</strong>: cargada, por parir, enferma, cría, semental, engorda. Los filtros se cruzan: <em>Cargadas</em> y <em>Enfermas</em> deja solo las que son las dos cosas.</p>
+        <figure class="telefono paso__foto"><img src="assets/demo-01-rancho.png" width="390" height="844" loading="lazy" alt="El tablero con los números del día y la leyenda de colores con símbolo."></figure>
+      </article>
+      <article class="paso" data-pantalla="1">
+        <span class="paso__num">02</span>
+        <h3>Cada animal, con su historia</h3>
+        <p>Número de casa y arete SINIIGA juntos, madre y padre, salud e historial con fecha. <strong>Si un problema se repite, la ficha lo dice</strong>: una placenta retenida dos veces queda marcada arriba.</p>
+        <figure class="telefono paso__foto"><img src="assets/demo-02-placenta.png" width="390" height="844" loading="lazy" alt="Ficha de la vaca 114 con el aviso: se repite, retuvo la placenta dos veces."></figure>
+      </article>
+      <article class="paso" data-pantalla="2">
+        <span class="paso__num">03</span>
+        <h3>Pesos que se entienden</h3>
+        <p>El último peso, los kilos ganados y los kilos por día, <strong>cada cifra con su fecha y los días que abarca</strong>. Y una barra por pesaje, para ver cómo sube.</p>
+        <figure class="telefono paso__foto"><img src="assets/demo-03-pesos.png" width="390" height="844" loading="lazy" alt="Pesos de un novillo: 377 kilos el 12 de septiembre, 132 kilos ganados en 105 días."></figure>
+      </article>
+      <article class="paso" data-pantalla="3">
+        <span class="paso__num">04</span>
+        <h3>Lo de esta semana, en una lista</h3>
+        <p>Enfermas, por parir, sincronizaciones sin cerrar y vacas que no han vuelto a cargar. <strong>Nadie tiene que acordarse</strong>: la lista se arma sola con lo que se captura.</p>
+        <figure class="telefono paso__foto"><img src="assets/demo-04-pendientes.png" width="390" height="844" loading="lazy" alt="Pantalla de pendientes: cuatro enfermas y dos por parir."></figure>
+      </article>
+    </div>
+    <div class="historia__fijo" aria-hidden="true">
+      <div class="telefono telefono--pila" id="pila">
+        <img src="assets/demo-01-rancho.png" width="390" height="844" alt="" class="activa">
+        <img src="assets/demo-02-placenta.png" width="390" height="844" alt="">
+        <img src="assets/demo-03-pesos.png" width="390" height="844" alt="">
+        <img src="assets/demo-04-pendientes.png" width="390" height="844" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="contenedor">
+    <ul class="mas">
+      <li><strong>Plan sanitario del año.</strong> Vacunas, baños y desparasitaciones mes por mes; el veterinario las palomea.</li>
+      <li><strong>Inventario.</strong> Medicinas, alimento e insumos, con entradas, salidas y lo que vale la bodega.</li>
+      <li><strong>Nada se borra.</strong> Lo mal capturado se anula con su motivo y el original queda a la vista.</li>
+      <li><strong>Cada quien ve lo suyo.</strong> Quien captura no puede borrar; el veterinario no ve precios.</li>
+      <li><strong>Descarga a Excel</strong> del ganado, el historial y el inventario.</li>
+      <li><strong>En cualquier teléfono.</strong> Funciona en el navegador de iPhone y de Android.</li>
+    </ul>
+    <p class="nota historia__nota">Las pantallas son de un rancho de demostración, con datos ficticios.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     CÓMO TRABAJAMOS
+     ============================================================ -->
+<section class="seccion" id="como">
+  <div class="contenedor">
+    <p class="rotulo">Cómo trabajamos</p>
+    <h2>La diferencia no es la aplicación. Es que <em>te la dejamos funcionando</em>.</h2>
+    <ol class="pasos">
+      <li><span class="pasos__num">1</span><div><h3>Capturamos tu ganado</h3><p>Nos das la información que tengas de cada animal —libreta, Excel o de palabra— y la cargamos completa.</p></div></li>
+      <li><span class="pasos__num">2</span><div><h3>Damos las cuentas</h3><p>Una para cada persona, con lo que le toca ver: el dueño, quien captura, el veterinario.</p></div></li>
+      <li><span class="pasos__num">3</span><div><h3>Capacitamos a tu gente</h3><p>A quien va a capturar y, si quieres, al veterinario, hasta que lo hagan solos.</p></div></li>
+      <li><span class="pasos__num">4</span><div><h3>Seguimos contigo</h3><p>Tres meses de ajustes sin costo a lo que ya existe. Los errores se arreglan siempre sin costo.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============================================================
+     PRECIO
+     ============================================================ -->
+<section class="seccion" id="precio">
+  <div class="contenedor precio">
+    <div>
+      <p class="rotulo">Precio</p>
+      <h2>Claro desde el <em>principio</em>.</h2>
+      <p><strong>Implementación</strong>, una sola vez: se cotiza según el tamaño del rancho. Si la pagas de contado, te regalamos <strong>tres meses de suscripción</strong>. También se puede a tres meses sin intereses.</p>
+      <p><strong>Suscripción mensual</strong>, según cuántas cabezas tengas. Si el hato crece o se vende ganado, el siguiente periodo se ajusta solo, hacia arriba o hacia abajo.</p>
+      <p class="nota">Precios más IVA. Descuento de 10% trimestral, 15% semestral y 20% anual. Se cancela cuando quieras, sin penalización. Trabajo nuevo, a $350 la hora, siempre cotizado antes.</p>
+    </div>
+    <table class="tabla-precio">
+      <caption class="oculto-visual">Suscripción mensual por número de cabezas</caption>
+      <thead><tr><th scope="col">Cabezas</th><th scope="col">Al mes</th></tr></thead>
+      <tbody>
+        <tr><td>Hasta 200</td><td>$400</td></tr>
+        <tr><td>De 201 a 500</td><td>$600</td></tr>
+        <tr><td>De 501 a 1,000</td><td>$900</td></tr>
+        <tr><td>Más de 1,000</td><td>$1,200</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============================================================
+     PREGUNTAS
+     ============================================================ -->
+<section class="seccion seccion--alterna" id="preguntas">
+  <div class="contenedor angosto">
+    <p class="rotulo">Preguntas</p>
+    <h2>Lo que <em>siempre</em> preguntan.</h2>
+    <details>
+      <summary>¿Necesito internet en el rancho?</summary>
+      <p>Para capturar, sí hace falta señal en el teléfono. Si en el potrero no hay, se anota en el momento y se captura al llegar a donde haya señal, <strong>con la fecha en que pasó</strong>, aunque haya sido ayer.</p>
+    </details>
+    <details>
+      <summary>¿Los datos son míos?</summary>
+      <p>Sí. Todo lo que registres es tuyo y lo puedes bajar a Excel cuando quieras. Si cancelas, tienes 30 días para descargarlo.</p>
+    </details>
+    <details>
+      <summary>¿Qué pasa si alguien captura algo mal?</summary>
+      <p>No se borra: se anota una corrección con el motivo, y el registro original queda tachado a la vista. Así nadie cambia la historia de un animal sin dejar rastro.</p>
+    </details>
+    <details>
+      <summary>¿Mi veterinario puede usarla?</summary>
+      <p>Sí, con su propia cuenta: registra y consulta lo sanitario y palomea el plan del año. No ve precios.</p>
+    </details>
+    <details>
+      <summary>¿Qué necesito para empezar?</summary>
+      <p>La información que tengas de tu ganado, como la tengas, y un teléfono para cada persona que vaya a usarla. Lo demás lo hacemos nosotros.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTACTO — el formulario arma un mensaje de WhatsApp.
+     Nada se manda a un servidor y nada se guarda en el navegador.
+     ============================================================ -->
+<section class="seccion" id="contacto">
+  <div class="contenedor contacto">
+    <div>
+      <p class="rotulo">Contacto</p>
+      <h2>Cuéntanos de tu <em>rancho</em>.</h2>
+      <p>Llena esto y se abre WhatsApp con el mensaje ya escrito. Te contestamos por ahí.</p>
+      <p class="nota">No guardamos nada: lo que escribes viaja solo dentro del mensaje de WhatsApp.</p>
+      <noscript><p class="nota">Este formulario necesita JavaScript para abrir WhatsApp.</p></noscript>
+    </div>
+    <form class="formulario" id="formulario" novalidate>
+      <label for="f-nombre">Tu nombre</label>
+      <input id="f-nombre" name="nombre" autocomplete="name" maxlength="80" required>
+
+      <label for="f-rancho">Nombre del rancho <span class="opcional">(opcional)</span></label>
+      <input id="f-rancho" name="rancho" maxlength="80">
+
+      <label for="f-lugar">Municipio y estado</label>
+      <input id="f-lugar" name="lugar" maxlength="80" required>
+
+      <label for="f-cabezas">¿Cuántas cabezas tienes, más o menos?</label>
+      <input id="f-cabezas" name="cabezas" inputmode="numeric" maxlength="7" required>
+
+      <label for="f-tipo">¿A qué se dedica?</label>
+      <select id="f-tipo" name="tipo">
+        <option value="">Elige una opción</option>
+        <option>Cría</option>
+        <option>Engorda</option>
+        <option>Cría y engorda</option>
+        <option>Leche</option>
+        <option>Otro</option>
+      </select>
+
+      <label for="f-nota">Algo más que quieras contarnos <span class="opcional">(opcional)</span></label>
+      <textarea id="f-nota" name="nota" rows="3" maxlength="400"></textarea>
+
+      <p class="formulario__error" id="error" role="alert"></p>
+      <button class="btn" type="submit">Enviar por WhatsApp</button>
+      <p class="formulario__respaldo" id="respaldo"></p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer class="pie">
+  <div class="contenedor pie__fila">
+    <p><strong data-marca>Control ganadero</strong> · Puebla, México.</p>
+    <p>Las pantallas de esta página son de un rancho de demostración, con datos ficticios.</p>
+    <p>© <span id="anio">2026</span></p>
+  </div>
+</footer>
+
+<a class="flotante" id="flotante" href="#contacto" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3a.5.5 0 0 0 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.4-.3z"/></svg>
+</a>
+
+<script src="script.js" defer></script>
+</body>
+</html>
