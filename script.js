@@ -195,7 +195,22 @@ function activar(n) {
   pasos.forEach((p) => p.classList.toggle('activo', p.dataset.pantalla === String(n)));
   pantallas.forEach((img, i) => img.classList.toggle('activa', i === n));
 }
-if ('IntersectionObserver' in window && pasos.length) {
+const enCelular = window.matchMedia('(max-width: 860px)');
+if (pasos.length && enCelular.matches) {
+  // CELULAR: la mitad de arriba la ocupa el teléfono fijo. Manda el último paso
+  // cuyo título ya subió a la zona de lectura (debajo del teléfono). Así la
+  // pantalla cambia justo cuando llega el texto nuevo, no cuando el viejo ya se escondió.
+  let turno = false;
+  const elegir = () => {
+    turno = false;
+    const linea = window.innerHeight * 0.84;
+    let n = 0;
+    pasos.forEach((p, i) => { if (p.querySelector('h3').getBoundingClientRect().top <= linea) n = i; });
+    activar(n);
+  };
+  window.addEventListener('scroll', () => { if (!turno) { turno = true; requestAnimationFrame(elegir); } }, { passive: true });
+  elegir();
+} else if ('IntersectionObserver' in window && pasos.length) {
   const vigia = new IntersectionObserver((entradas) => {
     entradas.forEach((en) => { if (en.isIntersecting) activar(Number(en.target.dataset.pantalla)); });
   }, { rootMargin: '-45% 0px -45% 0px' });
