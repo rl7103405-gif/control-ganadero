@@ -269,7 +269,7 @@ const ancha = window.matchMedia('(min-width: 861px)');
 
 function escalarDemo() {
   const marco = pantalla && pantalla.querySelector('iframe');
-  if (marco) marco.style.transform = 'scale(' + (pantalla.clientWidth / 390) + ')';
+  if (marco) marco.style.transform = '';   // la demo va a tamaño real dentro de una ventana ancha (estilos.css)
 }
 
 if (probar && figura && pantalla) {
@@ -305,7 +305,7 @@ if (probar && figura && pantalla) {
     cerrar.textContent = 'Cerrar la demostración';
     cerrar.addEventListener('click', cerrarDemo);
     figura.appendChild(cerrar);
-    figura.scrollIntoView({ behavior: quieto ? 'auto' : 'smooth', block: 'center' });
+    window.scrollTo({ top: figura.getBoundingClientRect().top + window.scrollY - 88, behavior: quieto ? 'auto' : 'smooth' });   // justo debajo de la barra
   });
   window.addEventListener('resize', escalarDemo);
 }

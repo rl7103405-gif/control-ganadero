@@ -461,3 +461,35 @@ details p { color: var(--hueso-suave); max-width: 60ch; padding-bottom: 18px; }
 
 /* El teléfono vivo nunca es más alto que la ventana */
 .telefono--portada.viva { width: min(340px, 72vw, calc((100vh - 190px) * .462)); }
+
+
+/* ============================================================
+   AJUSTE AL ALTO DE LA VENTANA (18/09)
+   Muchas laptops con Windows escalan al 150%: la ventana útil mide ~550 px
+   de alto. Todo lo que se queda fijo debe caber ahí COMPLETO.
+   ============================================================ */
+h1 { font-size: clamp(3rem, min(1.4rem + 7vw, 14vh + 1.2rem), 7.4rem); }
+.portada { padding-top: clamp(110px, min(18vw, 22vh), 210px); }
+
+/* El teléfono fijo de "Qué hace": cabe entero debajo de la barra, centrado */
+.historia__fijo { display: flex; justify-content: center; align-items: flex-start; }
+.telefono--pila {
+  top: 92px;
+  width: min(100%, calc((100vh - 124px) * .462));   /* 390/844 = .462 */
+}
+.telefono--pila img { border-radius: clamp(20px, 3.4vh, 38px); border-width: clamp(5px, .9vh, 9px); }
+.paso { min-height: max(78vh, 420px); }
+
+/* La demo viva, en computadora, es una VENTANA ancha a tamaño real
+   (la app se adapta sola al ancho), no un teléfono chiquito. */
+.telefono--portada.viva { width: min(1120px, 94vw); perspective: none; }
+.telefono--portada.viva .pantalla {
+  aspect-ratio: auto; height: clamp(420px, calc(100vh - 150px), 760px);
+  border-radius: 14px; border: 1px solid rgba(237, 230, 218, .18); background: #F6F7F9;
+  display: flex; flex-direction: column;
+}
+.telefono--portada.viva .pantalla::before {   /* la barrita de la ventana */
+  content: ''; flex: none; height: 34px; background: #2A2621;
+  background-image: radial-gradient(circle at 18px 17px, #6B665D 5px, transparent 5.5px), radial-gradient(circle at 36px 17px, #6B665D 5px, transparent 5.5px), radial-gradient(circle at 54px 17px, #6B665D 5px, transparent 5.5px);
+}
+.telefono--portada.viva .pantalla iframe { position: static; flex: 1; width: 100%; height: auto; transform: none; }
