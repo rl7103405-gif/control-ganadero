@@ -208,7 +208,7 @@ if ('IntersectionObserver' in window && pasos.length) {
 /* ---------- Aparición suave ----------
    Nunca deja nada oculto: si el observador no dispara (navegador viejo,
    captura de pantalla, impresión), a los 2.5 s se destapa todo. */
-const aparecen = document.querySelectorAll('.historia h2, .pasos li, .tabla-precio, details, .mas li, .contacto > div, .formulario');
+const aparecen = document.querySelectorAll('.nombre, .historia h2, .pasos li, .tabla-precio, details, .mas li, .contacto > div, .formulario');
 if ('IntersectionObserver' in window) {
   const observador = new IntersectionObserver((entradas) => {
     entradas.forEach((en) => {
@@ -289,7 +289,7 @@ if (probar && figura && pantalla) {
     if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || e.button !== 0) return;  // abrir en otra pestaña sigue funcionando
     e.preventDefault();
     const marco = document.createElement('iframe');
-    marco.src = 'demo/index.html#/rancho';
+    marco.src = probar.href.split('#')[0] + '#/rancho';   // la misma liga del botón, sirva desde donde sirva
     marco.title = 'Demostración de la aplicación con un rancho ficticio';
     marco.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-downloads');
     marco.setAttribute('referrerpolicy', 'no-referrer');
