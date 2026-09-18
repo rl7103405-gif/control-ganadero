@@ -6,7 +6,7 @@
 .nombre h2 { max-width: 16ch; margin-bottom: 28px; }
 .nombre p { color: var(--hueso-suave); max-width: 52ch; }
 .js .nombre__runa path { stroke-dasharray: 60; stroke-dashoffset: 60; transition: stroke-dashoffset 2.2s ease .2s; }
-.js .nombre.visible .nombre__runa path { stroke-dashoffset: 0; }
+.js .nombre__runa.trazada path { stroke-dashoffset: 0; }
 @media (max-width: 760px) { .nombre__rejilla { grid-template-columns: 1fr; } .nombre__runa { width: 130px; } }
 @media (prefers-reduced-motion: reduce) { .js .nombre__runa path { stroke-dashoffset: 0; transition: none; } }
 
@@ -22,3 +22,11 @@
 .boceto__apellido { font-size: .72rem; letter-spacing: .22em; text-transform: uppercase; opacity: .75; }
 .boceto__pie { padding: 16px 20px 20px; font-size: .92rem; color: var(--hueso-suave); border-top: 1px solid var(--linea); }
 .boceto__pie strong { display: block; margin-bottom: 4px; }
+
+/* De dónde viene: la historia, con la voz de quien la hizo */
+.nombre__rejilla { align-items: start; }
+.nombre__runa { position: sticky; top: 120px; }
+.historia-origen { margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--linea); }
+.historia-origen .rotulo { margin-bottom: 14px; }
+.firma-origen { font-family: var(--serif); font-style: italic; font-size: 1.35rem; color: var(--hueso) !important; margin-top: 22px; }
+@media (max-width: 760px) { .nombre__runa { position: static; } }

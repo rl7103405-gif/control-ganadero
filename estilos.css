@@ -493,3 +493,67 @@ h1 { font-size: clamp(3rem, min(1.4rem + 7vw, 14vh + 1.2rem), 7.4rem); }
   background-image: radial-gradient(circle at 18px 17px, #6B665D 5px, transparent 5.5px), radial-gradient(circle at 36px 17px, #6B665D 5px, transparent 5.5px), radial-gradient(circle at 54px 17px, #6B665D 5px, transparent 5.5px);
 }
 .telefono--portada.viva .pantalla iframe { position: static; flex: 1; width: 100%; height: auto; transform: none; }
+
+
+/* ============================================================
+   ARREGLOS DEL USUARIO-REAL (18/09): tía en laptop 1280x553 y ganadero en celular
+   ============================================================ */
+/* 1. El título ya no entra por una máscara (a medio camino se veían pedazos de
+      letra flotando): cada palabra sube un poco y aparece. */
+.pal { overflow: visible; padding-bottom: 0; margin-bottom: 0; }
+.js .pal__in { transform: translateY(.3em); opacity: 0; animation: palabra .7s ease forwards; }
+@keyframes palabra { to { opacity: 1; transform: none; } }
+.js .pal--1 { animation-delay: .05s; } .js .pal--2 { animation-delay: .12s; } .js .pal--3 { animation-delay: .19s; }
+.js .pal--4 { animation-delay: .30s; } .js .pal--5 { animation-delay: .37s; } .js .pal--6 { animation-delay: .44s; }
+.js .portada__texto { animation-delay: .55s; } .js .portada__botones { animation-delay: .7s; }
+.js .telefono--portada { animation-delay: .6s; }
+
+/* 2. En ventanas bajas la primera pantalla debe traer el botón */
+@media (min-width: 861px) and (max-height: 700px) {
+  :root { --aire: clamp(70px, 14vh, 120px); }
+  h1 { font-size: clamp(2.6rem, 11.5vh, 5rem); }
+  .portada { padding-top: 96px; }
+  .portada .rotulo { margin-bottom: 12px; }
+  .portada__texto { margin: 16px auto 20px; font-size: 1.02rem; max-width: 56ch; }
+  .portada h1 { max-width: none; }
+  .telefono--portada { margin-top: 56px; }
+  h2 { margin-bottom: 32px; }
+}
+
+/* 3. La nota del teléfono: dentro del teléfono, con su fondo, sin salirse */
+.probar__nota {
+  left: 7%; right: 7%; top: calc(46% + 42px); padding: 9px 12px; border-radius: 12px;
+  background: rgba(21, 19, 16, .86); font-size: .84rem; line-height: 1.35; text-shadow: none;
+}
+@media (max-width: 480px) { .probar { padding: 0 18px; font-size: .95rem; } }
+
+/* 4. La ventana de la demo: barra de verdad, con el aviso y el botón de cerrar */
+.telefono--portada.viva .pantalla { height: clamp(400px, calc(100vh - 120px), 760px); }
+.telefono--portada.viva .pantalla::before { content: none; }
+.ventana-barra { flex: none; display: flex; align-items: center; gap: 14px; min-height: 40px; padding: 0 6px 0 14px; background: #2A2621; color: var(--hueso-suave); font-size: .82rem; }
+.ventana-puntos { flex: none; width: 46px; height: 10px; background-image: radial-gradient(circle at 5px 5px, #6B665D 5px, transparent 5.5px), radial-gradient(circle at 23px 5px, #6B665D 5px, transparent 5.5px), radial-gradient(circle at 41px 5px, #6B665D 5px, transparent 5.5px); }
+.ventana-titulo { flex: 1; text-align: center; color: var(--ambar-claro); }
+.ventana-cerrar { flex: none; background: none; border: 0; color: var(--hueso); font: 500 .88rem var(--sans); padding: 8px 12px; border-radius: 8px; cursor: pointer; }
+.ventana-cerrar:hover { background: rgba(237, 230, 218, .12); }
+
+/* 5. Celular: menú en una segunda fila que se desliza, y blancos de ≥44 px */
+@media (max-width: 860px) {
+  .nav { background: rgba(21, 19, 16, .86); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+  .nav__fila { flex-wrap: wrap; row-gap: 0; min-height: 64px; }
+  .nav nav { order: 3; width: 100%; }
+  .nav__ligas { display: flex; gap: 4px; overflow-x: auto; margin: 0 -5vw; padding: 0 5vw 6px; scrollbar-width: none; }
+  .nav__ligas::-webkit-scrollbar { display: none; }
+  .nav__ligas a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px 0 0; white-space: nowrap; }
+  .portada { padding-top: 150px; }
+  section[id] { scroll-margin-top: 118px; }
+}
+section[id] { scroll-margin-top: 84px; }
+.btn--chico { min-height: 44px; }
+.pago__cierre a, .pie a { display: inline-block; padding: 12px 0; }
+
+/* 6. La runa se traza cuando ya está a la vista, no antes */
+.js .nombre.visible .nombre__runa path { stroke-dashoffset: 60; }
+.js .nombre__runa.trazada path { stroke-dashoffset: 0 !important; }
+
+#telefono-portada { scroll-margin-top: 100px; }
+@media (max-width: 860px) { #telefono-portada { scroll-margin-top: 130px; } }

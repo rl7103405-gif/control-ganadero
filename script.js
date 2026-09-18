@@ -280,32 +280,48 @@ if (probar && figura && pantalla) {
     pantalla.textContent = '';
     if (imagenOriginal) pantalla.appendChild(imagenOriginal);
     figura.classList.remove('viva');
-    if (cerrar) { cerrar.remove(); cerrar = null; }
     probar.focus();                         // el foco vuelve a quien abrió
   }
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && figura.classList.contains('viva')) cerrarDemo(); });
 
   probar.addEventListener('click', (e) => {
-    if (!ancha.matches) return;             // en celular: que siga la liga
-    if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || e.button !== 0) return;  // abrir en otra pestaña sigue funcionando
+    if (!ancha.matches) return;             // en celular: que siga la liga (la demo trae su "Volver")
+    if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || e.button !== 0) return;
     e.preventDefault();
+
+    // La barra de la ventana lleva el aviso y el botón de cerrar POR FUERA de
+    // la demo: así no tapan contenido y el cerrar siempre queda a la vista.
+    const barra = document.createElement('div'); barra.className = 'ventana-barra';
+    const puntos = document.createElement('span'); puntos.className = 'ventana-puntos'; puntos.setAttribute('aria-hidden', 'true');
+    const titulo = document.createElement('span'); titulo.className = 'ventana-titulo'; titulo.textContent = 'Demostración · rancho ficticio, datos inventados';
+    const cerrar = document.createElement('button'); cerrar.type = 'button'; cerrar.className = 'ventana-cerrar'; cerrar.textContent = 'Cerrar ✕';
+    cerrar.addEventListener('click', cerrarDemo);
+    barra.append(puntos, titulo, cerrar);
+
     const marco = document.createElement('iframe');
     marco.src = probar.href.split('#')[0] + '#/rancho';   // la misma liga del botón, sirva desde donde sirva
     marco.title = 'Demostración de la aplicación con un rancho ficticio';
     marco.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-downloads');
     marco.setAttribute('referrerpolicy', 'no-referrer');
-    marco.addEventListener('load', () => marco.focus());   // teclado y lector de pantalla entran a la demo
+    marco.addEventListener('load', () => {
+      marco.focus();
+      // Con el foco dentro de la demo, Escape se teclea ALLÁ: se escucha también ahí.
+      try { marco.contentWindow.addEventListener('keydown', (ev) => { if (ev.key === 'Escape') cerrarDemo(); }); } catch (err) { /* sin acceso: queda el botón */ }
+    });
     pantalla.textContent = '';
-    pantalla.appendChild(marco);
+    pantalla.append(barra, marco);
     figura.classList.add('viva');
     inclinaX = 0; inclinaY = 0;
-    escalarDemo();
-
-    cerrar = document.createElement('button');
-    cerrar.type = 'button'; cerrar.className = 'cerrar-demo';
-    cerrar.textContent = 'Cerrar la demostración';
-    cerrar.addEventListener('click', cerrarDemo);
-    figura.appendChild(cerrar);
-    window.scrollTo({ top: figura.getBoundingClientRect().top + window.scrollY - 88, behavior: quieto ? 'auto' : 'smooth' });   // justo debajo de la barra
+    window.scrollTo({ top: figura.getBoundingClientRect().top + window.scrollY - 88, behavior: quieto ? 'auto' : 'smooth' });
   });
   window.addEventListener('resize', escalarDemo);
+}
+
+/* ---------- La runa se traza cuando ya se está viendo ---------- */
+const runa = document.querySelector('.nombre__runa');
+if (runa) {
+  if ('IntersectionObserver' in window) {
+    const ojo = new IntersectionObserver((en) => { if (en[0].isIntersecting) { runa.classList.add('trazada'); ojo.disconnect(); } }, { threshold: 0.75 });
+    ojo.observe(runa);
+  } else { runa.classList.add('trazada'); }
 }
