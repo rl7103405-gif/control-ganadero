@@ -29,7 +29,7 @@
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23151310'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%23D08A4E' stroke-width='2.4'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%23D08A4E'/%3E%3C/svg%3E">
 
-<link rel="stylesheet" href="estilos.css?v=5">
+<link rel="stylesheet" href="estilos.css?v=7">
 </head>
 <body>
 
@@ -49,8 +49,8 @@
       <ul class="nav__ligas">
         <li><a href="#que-hace">Qué hace</a></li>
         <li><a href="#como">Cómo trabajamos</a></li>
-        <li><a href="#precio">Precio</a></li>
         <li><a href="#preguntas">Preguntas</a></li>
+        <li><a href="#pago">Cómo se paga</a></li>
       </ul>
     </nav>
     <a class="btn btn--claro btn--chico" href="#contacto">Pedir informes</a>
@@ -69,11 +69,17 @@
     <p class="portada__texto">Cada animal con su historia. Y no te dejamos una aplicación para que la llenes tú: <strong>cargamos tu ganado y capacitamos a tu gente</strong>.</p>
     <div class="portada__botones">
       <a class="btn btn--claro" href="#contacto">Quiero verla en mi rancho</a>
-      <a class="liga-flecha" href="#que-hace">Ver cómo se ve <span aria-hidden="true">↓</span></a>
+      <a class="liga-flecha" href="#que-hace">Ver qué hace <span aria-hidden="true">↓</span></a>
     </div>
   </div>
   <figure class="telefono telefono--portada" id="telefono-portada">
-    <img src="assets/demo-01-rancho.png?v=5" width="390" height="844" alt="Pantalla principal de la aplicación: 150 cabezas, 48 cargadas, 2 por parir, 47 crías, y un aviso de 11 cosas por atender.">
+    <div class="pantalla" id="pantalla">
+      <img src="assets/demo-01-rancho.png?v=5" width="390" height="844" alt="Pantalla principal de la aplicación: 150 cabezas, 48 cargadas, 2 por parir, 47 crías, y un aviso de 11 cosas por atender.">
+    </div>
+    <a class="probar" id="probar" href="demo/index.html">
+      <span class="probar__punto" aria-hidden="true"></span>Pruébala: es la app de verdad
+    </a>
+    <figcaption class="probar__nota">Con un rancho ficticio de 150 cabezas. Toca una vaca y abre su ficha.</figcaption>
   </figure>
 </section>
 
@@ -151,31 +157,6 @@
 </section>
 
 <!-- ============================================================
-     PRECIO
-     ============================================================ -->
-<section class="seccion" id="precio">
-  <div class="contenedor precio">
-    <div>
-      <p class="rotulo">Precio</p>
-      <h2>Claro desde el <em>principio</em>.</h2>
-      <p><strong>Implementación</strong>, una sola vez: se cotiza según el tamaño del rancho. Si la pagas de contado, te regalamos <strong>tres meses de suscripción</strong>. También se puede a tres meses sin intereses.</p>
-      <p><strong>Suscripción mensual</strong>, según cuántas cabezas tengas. Si el hato crece o se vende ganado, el siguiente periodo se ajusta solo, hacia arriba o hacia abajo.</p>
-      <p class="nota">Precios más IVA. Descuento de 10% trimestral, 15% semestral y 20% anual. Se cancela cuando quieras, sin penalización. Trabajo nuevo, a $350 la hora, siempre cotizado antes.</p>
-    </div>
-    <table class="tabla-precio">
-      <caption class="oculto-visual">Suscripción mensual por número de cabezas</caption>
-      <thead><tr><th scope="col">Cabezas</th><th scope="col">Al mes</th></tr></thead>
-      <tbody>
-        <tr><td>Hasta 200</td><td>$400</td></tr>
-        <tr><td>De 201 a 500</td><td>$600</td></tr>
-        <tr><td>De 501 a 1,000</td><td>$900</td></tr>
-        <tr><td>Más de 1,000</td><td>$1,200</td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<!-- ============================================================
      PREGUNTAS
      ============================================================ -->
 <section class="seccion seccion--alterna" id="preguntas">
@@ -206,6 +187,38 @@
 </section>
 
 <!-- ============================================================
+     CÓMO SE PAGA — sin cifras: el precio se da en la cotización
+     ============================================================ -->
+<section class="seccion" id="pago">
+  <div class="contenedor">
+    <p class="rotulo">Cómo se paga</p>
+    <h2>Dos pagos, <em>sin letras chiquitas</em>.</h2>
+    <div class="pagos">
+      <div class="pago">
+        <span class="pago__num">1</span>
+        <h3>La implementación</h3>
+        <p>Un solo pago por dejarte el rancho cargado y a tu gente capacitada. Se cotiza según el tamaño de tu hato.</p>
+        <ul>
+          <li><strong>De contado</strong>, por transferencia: te regalamos tres meses de suscripción.</li>
+          <li><strong>A tres meses sin intereses</strong>, con tarjeta.</li>
+        </ul>
+      </div>
+      <div class="pago">
+        <span class="pago__num">2</span>
+        <h3>La suscripción</h3>
+        <p>Paga la base de datos, los respaldos y el mantenimiento. Va según cuántas cabezas tengas, y si el hato crece o vendes ganado, el siguiente periodo se ajusta solo.</p>
+        <ul>
+          <li><strong>Mensual, trimestral, semestral o anual</strong>: entre más largo el periodo, más descuento.</li>
+          <li>Por <strong>transferencia</strong> o con <strong>cargo automático a tu tarjeta</strong>.</li>
+          <li>Se cancela cuando quieras, sin penalización.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="pago__cierre">Todo se factura. Los errores se arreglan siempre sin costo, y cualquier trabajo nuevo se cotiza antes de hacerse. <a href="#contacto">Pide tu cotización</a> y te decimos el número exacto para tu rancho.</p>
+  </div>
+</section>
+
+<!-- ============================================================
      CONTACTO — el formulario arma un mensaje de WhatsApp.
      Nada se manda a un servidor y nada se guarda en el navegador.
      ============================================================ -->
@@ -215,7 +228,7 @@
       <p class="rotulo">Contacto</p>
       <h2>Cuéntanos de tu <em>rancho</em>.</h2>
       <p>Llena esto y se abre WhatsApp con el mensaje ya escrito. Te contestamos por ahí.</p>
-      <p class="nota">No guardamos nada: lo que escribes viaja solo dentro del mensaje de WhatsApp.</p>
+      <p class="nota">No guardamos nada en ninguna base de datos: lo que escribes viaja a WhatsApp dentro del mensaje, y tú confirmas el envío.</p>
       <noscript><p class="nota">Este formulario necesita JavaScript para abrir WhatsApp.</p></noscript>
     </div>
     <form class="formulario" id="formulario" novalidate>
@@ -254,10 +267,12 @@
 </main>
 
 <footer class="pie">
-  <div class="contenedor pie__fila">
-    <p><strong data-marca>Control ganadero</strong> · Puebla, México.</p>
-    <p>Las pantallas de esta página son de un rancho de demostración, con datos ficticios.</p>
-    <p>© <span id="anio">2026</span></p>
+  <div class="contenedor">
+    <div class="pie__fila">
+      <p><strong data-marca>Control ganadero</strong> · Roberto Linares Álvarez · Puebla, México</p>
+      <p><a href="privacidad.html">Aviso de privacidad y términos</a></p>
+    </div>
+    <p class="pie__legal">Las pantallas y la demostración usan un rancho ficticio: ningún dato es de un rancho real. La aplicación es una herramienta de registro y consulta; las decisiones sobre el manejo, la salud y la venta del ganado son del ganadero y de su médico veterinario. Este sitio y la aplicación se desarrollaron con asistencia de herramientas de inteligencia artificial, bajo la supervisión y la responsabilidad de Roberto Linares Álvarez. © <span id="anio">2026</span></p>
   </div>
 </footer>
 
@@ -265,6 +280,6 @@
   <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3a.5.5 0 0 0 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.4-.3z"/></svg>
 </a>
 
-<script src="script.js?v=5" defer></script>
+<script src="script.js?v=7" defer></script>
 </body>
 </html>

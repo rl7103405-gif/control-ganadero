@@ -410,3 +410,54 @@ details p { color: var(--hueso-suave); max-width: 60ch; padding-bottom: 18px; }
   .marca__ojo { width: 24px; height: 24px; }
   .btn--chico { padding: 0 16px; font-size: .88rem; }
 }
+
+
+/* ============================================================
+   EL TELÉFONO SE PUEDE PROBAR
+   En computadora la app de verdad (con el rancho ficticio) se carga DENTRO
+   del teléfono al tocar el botón. En celular el botón abre la demo completa.
+   ============================================================ */
+.pantalla { position: relative; border-radius: 38px 38px 0 0; overflow: hidden; }
+.probar {
+  position: absolute; left: 50%; top: 46%; transform: translate(-50%, -50%); z-index: 3; white-space: nowrap;
+  display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 24px; border-radius: 999px;
+  background: var(--ambar-claro); color: var(--noche); font: 600 1rem var(--sans); text-decoration: none;
+  box-shadow: 0 0 0 8px rgba(231, 165, 107, .18), 0 20px 50px -10px rgba(0, 0, 0, .7);
+  transition: transform .25s, box-shadow .25s;
+}
+.probar:hover { transform: translate(-50%, -50%) scale(1.04); box-shadow: 0 0 0 12px rgba(231, 165, 107, .22), 0 20px 50px -10px rgba(0, 0, 0, .7); }
+.probar__punto { width: 9px; height: 9px; border-radius: 50%; background: var(--noche); animation: parpadea 1.6s ease-in-out infinite; }
+@keyframes parpadea { 0%, 100% { opacity: 1; } 50% { opacity: .25; } }
+.probar__nota { position: absolute; left: -30%; right: -30%; top: 56%; z-index: 3; text-align: center; font-size: .9rem; color: var(--hueso); text-shadow: 0 1px 12px rgba(0, 0, 0, .9); padding: 0 10px; }
+.telefono--portada .pantalla::after { content: ''; position: absolute; inset: 0; background: rgba(21, 19, 16, .38); z-index: 2; transition: opacity .4s; }
+
+/* Ya viva: teléfono completo, sin velo, sin inclinarse */
+.telefono--portada.viva { margin-bottom: clamp(60px, 8vw, 110px); animation: none; opacity: 1; }
+.telefono--portada.viva::after, .telefono--portada.viva .pantalla::after, .telefono--portada.viva .probar, .telefono--portada.viva .probar__nota { display: none; }
+.telefono--portada.viva .pantalla { border-radius: 38px; border: 9px solid #2A2621; background: #F6F7F9; aspect-ratio: 390 / 844; box-shadow: 0 0 0 1px rgba(237, 230, 218, .08), 0 50px 120px -40px rgba(208, 138, 78, .45), 0 30px 60px -30px rgba(0, 0, 0, .8); }
+.pantalla iframe { position: absolute; left: 0; top: 0; width: 390px; height: 844px; border: 0; transform-origin: 0 0; background: #F6F7F9; }
+.cerrar-demo { display: block; margin: 18px auto 0; background: none; border: 0; border-bottom: 1px solid var(--linea); color: var(--hueso-suave); font: inherit; font-size: .92rem; padding: 8px 4px; cursor: pointer; }
+.cerrar-demo:hover { color: var(--hueso); border-color: var(--hueso); }
+@media (prefers-reduced-motion: reduce) { .probar__punto { animation: none; } }
+
+/* ---------- Cómo se paga ---------- */
+.pagos { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 0 clamp(40px, 7vw, 110px); border-top: 1px solid var(--linea); }
+.pago { padding: 34px 0 10px; }
+.pago__num { display: block; font-family: var(--serif); font-size: clamp(3rem, 2rem + 3vw, 4.6rem); line-height: 1; color: var(--ambar-claro); margin-bottom: 18px; }
+.pago p, .pago li { color: var(--hueso-suave); }
+.pago ul { list-style: none; padding: 0; margin: 20px 0 0; }
+.pago li { padding: 14px 0; border-top: 1px solid var(--linea); }
+.pago__cierre { margin-top: clamp(36px, 5vw, 60px); max-width: 62ch; color: var(--hueso-suave); }
+.pago__cierre a, .pie a, .legal a { color: var(--ambar-claro); text-underline-offset: 3px; }
+
+/* ---------- Pie legal y página de privacidad ---------- */
+.pie__legal { margin-top: 22px; max-width: 95ch; font-size: .84rem; line-height: 1.6; color: var(--gris); }
+.legal { padding: clamp(130px, 16vw, 190px) 0 var(--aire); }
+.legal h1 { font-size: clamp(2.2rem, 1.6rem + 3vw, 4rem); margin-bottom: 14px; }
+.legal h2 { font-size: clamp(1.4rem, 1.2rem + 1vw, 2rem); margin: 54px 0 14px; max-width: none; }
+.legal p, .legal li { color: var(--hueso-suave); max-width: 70ch; }
+.legal ul { padding-left: 20px; }
+.legal li { margin-bottom: 8px; }
+
+/* El teléfono vivo nunca es más alto que la ventana */
+.telefono--portada.viva { width: min(340px, 72vw, calc((100vh - 190px) * .462)); }

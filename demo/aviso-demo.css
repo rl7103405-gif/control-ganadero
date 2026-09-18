@@ -1,0 +1,3 @@
+/* Cinta fija: que nadie confunda la demo con un rancho de verdad. */
+.aviso-demo{position:fixed;left:0;right:0;bottom:0;z-index:9999;margin:0;padding:7px 10px;text-align:center;font:600 12px/1.2 system-ui,sans-serif;letter-spacing:.02em;color:#151310;background:#E7A56B}
+body{padding-bottom:30px}

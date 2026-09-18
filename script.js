@@ -233,7 +233,7 @@ function pintar() {
   pendiente = false;
   const alto = document.documentElement.scrollHeight - window.innerHeight;
   if (avance) avance.style.transform = 'scaleX(' + (alto > 0 ? Math.min(1, window.scrollY / alto) : 0) + ')';
-  if (!quieto && telefonoPortada && window.scrollY < window.innerHeight * 1.6) {
+  if (!quieto && telefonoPortada && telefonoPortada.isConnected && window.scrollY < window.innerHeight * 1.6) {
     const baja = Math.min(60, window.scrollY * 0.08);
     telefonoPortada.style.transform = 'translateY(' + baja + 'px) rotateX(' + inclinaY + 'deg) rotateY(' + inclinaX + 'deg)';
   }
@@ -251,4 +251,61 @@ if (!quieto && portada && window.matchMedia('(hover: hover) and (pointer: fine)'
     pedirPintar();
   });
   portada.addEventListener('mouseleave', () => { inclinaX = 0; inclinaY = 0; pedirPintar(); });
+}
+
+/* ---------- El teléfono de la portada se puede probar ----------
+   El botón es una liga normal a la demo (así funciona sin JavaScript y en
+   celular, donde se abre completa). En pantallas anchas se intercepta y la app
+   se carga DENTRO del teléfono.
+   Sobre el sandbox: la demo es contenido PROPIO del mismo origen, así que el
+   sandbox NO es aislamiento (con allow-scripts + allow-same-origin no puede
+   serlo); solo le quita capacidades que no necesita: abrir ventanas, mandar
+   formularios, navegar esta página. No se quita allow-same-origin porque la
+   app carga módulos y usa almacenamiento del navegador. */
+const probar = $('#probar');
+const figura = $('#telefono-portada');
+const pantalla = $('#pantalla');
+const ancha = window.matchMedia('(min-width: 861px)');
+
+function escalarDemo() {
+  const marco = pantalla && pantalla.querySelector('iframe');
+  if (marco) marco.style.transform = 'scale(' + (pantalla.clientWidth / 390) + ')';
+}
+
+if (probar && figura && pantalla) {
+  const imagenOriginal = pantalla.querySelector('img');
+  let cerrar = null;
+
+  function cerrarDemo() {
+    pantalla.textContent = '';
+    if (imagenOriginal) pantalla.appendChild(imagenOriginal);
+    figura.classList.remove('viva');
+    if (cerrar) { cerrar.remove(); cerrar = null; }
+    probar.focus();                         // el foco vuelve a quien abrió
+  }
+
+  probar.addEventListener('click', (e) => {
+    if (!ancha.matches) return;             // en celular: que siga la liga
+    if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || e.button !== 0) return;  // abrir en otra pestaña sigue funcionando
+    e.preventDefault();
+    const marco = document.createElement('iframe');
+    marco.src = 'demo/index.html#/rancho';
+    marco.title = 'Demostración de la aplicación con un rancho ficticio';
+    marco.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-downloads');
+    marco.setAttribute('referrerpolicy', 'no-referrer');
+    marco.addEventListener('load', () => marco.focus());   // teclado y lector de pantalla entran a la demo
+    pantalla.textContent = '';
+    pantalla.appendChild(marco);
+    figura.classList.add('viva');
+    inclinaX = 0; inclinaY = 0;
+    escalarDemo();
+
+    cerrar = document.createElement('button');
+    cerrar.type = 'button'; cerrar.className = 'cerrar-demo';
+    cerrar.textContent = 'Cerrar la demostración';
+    cerrar.addEventListener('click', cerrarDemo);
+    figura.appendChild(cerrar);
+    figura.scrollIntoView({ behavior: quieto ? 'auto' : 'smooth', block: 'center' });
+  });
+  window.addEventListener('resize', escalarDemo);
 }
