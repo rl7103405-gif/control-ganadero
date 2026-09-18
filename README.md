@@ -31,3 +31,18 @@ teléfono es el único objeto: en la portada sale iluminado desde abajo, y en
 paso trae su propia captura. Las variables están arriba de `estilos.css`.
 
 Lo que falta para publicarla está en `PUBLICAR.md`.
+
+## La demo viva (`demo/`)
+
+Es la app real con el rancho FICTICIO, compilada aparte y sin Firebase:
+
+```
+cd ../app-rancho
+npx vite build --config demo/vite.publica.config.js
+cd ../pagina-control-ganadero/demo
+sed 's|\.\./\.\./assets/|./assets/|g' demo/publica/index.html > index.html && rm -rf demo
+```
+
+Después hay que volver a ponerle a `demo/index.html` la CSP, la hoja `aviso-demo.css` y la
+cinta "Demostración · rancho ficticio" (ver el commit del 18/09), y barrer el paquete:
+no debe aparecer `AIza`, ni nombres reales. Nunca se compila con `DEMO_DATOS=real`.
