@@ -208,7 +208,7 @@ if ('IntersectionObserver' in window && pasos.length) {
 /* ---------- Aparición suave ----------
    Nunca deja nada oculto: si el observador no dispara (navegador viejo,
    captura de pantalla, impresión), a los 2.5 s se destapa todo. */
-const aparecen = document.querySelectorAll('.nombre, .historia h2, .pasos li, .tabla-precio, details, .mas li, .contacto > div, .formulario');
+const aparecen = document.querySelectorAll('.rol, .nombre, .historia h2, .pasos li, .tabla-precio, details, .mas li, .contacto > div, .formulario');
 if ('IntersectionObserver' in window) {
   const observador = new IntersectionObserver((entradas) => {
     entradas.forEach((en) => {
