@@ -402,3 +402,11 @@ details p { color: var(--hueso-suave); max-width: 60ch; padding-bottom: 18px; }
   .js .tabla-precio tbody tr { opacity: 1; transform: none; transition: none; }
   .telefono--portada img { transition: none; }
 }
+
+/* Barra de arriba en celular: nada se parte en dos líneas */
+.marca, .btn--chico { white-space: nowrap; }
+@media (max-width: 480px) {
+  .marca { font-size: 1.12rem; gap: 8px; }
+  .marca__ojo { width: 24px; height: 24px; }
+  .btn--chico { padding: 0 16px; font-size: .88rem; }
+}
