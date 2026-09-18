@@ -223,7 +223,7 @@ if (pasos.length && enCelular.matches) {
 /* ---------- Aparición suave ----------
    Nunca deja nada oculto: si el observador no dispara (navegador viejo,
    captura de pantalla, impresión), a los 2.5 s se destapa todo. */
-const aparecen = document.querySelectorAll('.rol, .nombre, .historia h2, .pasos li, .tabla-precio, details, .mas li, .contacto > div, .formulario');
+const aparecen = document.querySelectorAll('.ahorro, .seguro, .rol, .nombre, .historia h2, .pasos li, .tabla-precio, details, .mas li, .contacto > div, .formulario');
 if ('IntersectionObserver' in window) {
   const observador = new IntersectionObserver((entradas) => {
     entradas.forEach((en) => {
