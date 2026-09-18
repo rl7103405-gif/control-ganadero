@@ -4,7 +4,7 @@
 const CONFIG = {
   // 52 + lada + número, sin espacios. Mientras esté vacío, el formulario
   // avisa que falta en vez de abrir un WhatsApp roto.
-  whatsapp: '',
+  whatsapp: '522216675776',
 };
 
 /* ============================================================
