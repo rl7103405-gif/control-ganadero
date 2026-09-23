@@ -693,3 +693,17 @@ section[id] { scroll-margin-top: 84px; }
 .origen__foto { margin-top: 40px; }
 .origen__foto img { width: 100%; border-radius: 14px; }
 .origen__foto figcaption { margin-top: 10px; font-size: .95rem; color: var(--gris); }
+
+/* ---------- Ronda 3 (23/09): cuentas en lista, qué incluye la puesta en marcha, Fehu al pie ---------- */
+.roles-lista { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--linea); }
+.roles-lista li { display: grid; grid-template-columns: minmax(170px, 240px) 1fr; gap: 6px 28px; padding: 20px 0; border-bottom: 1px solid var(--linea); }
+.roles-lista strong { font-family: var(--serif); font-weight: 400; font-size: 1.35rem; color: var(--hueso); }
+.roles-lista span { color: var(--hueso-suave); }
+@media (max-width: 640px) { .roles-lista li { grid-template-columns: 1fr; padding: 16px 0; } }
+
+.incluye { list-style: none; padding: 0; margin: 14px 0 0; }
+.incluye li { position: relative; padding: 8px 0 8px 26px; color: var(--hueso-suave); }
+.incluye li::before { content: '✓'; position: absolute; left: 0; top: 8px; color: var(--ambar-claro); }
+
+.pie__nombre { margin-top: 22px; max-width: 70ch; font-size: .95rem; color: var(--hueso-suave); }
+.pie__nombre strong { color: var(--hueso); font-weight: 500; }

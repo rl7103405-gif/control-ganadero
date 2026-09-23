@@ -29,7 +29,7 @@
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23151310'/%3E%3Cpath d='M11 27V5M11 17.5 22 8.5M11 24.5 22 15.5' fill='none' stroke='%23E7A56B' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
 
-<link rel="stylesheet" href="estilos.css?v=20">
+<link rel="stylesheet" href="estilos.css?v=21">
 </head>
 <body>
 
@@ -92,7 +92,7 @@
   <div class="contenedor angosto">
     <p class="rotulo">De dónde viene</p>
     <h2>Primero la hicimos para <em>un rancho de verdad</em>.</h2>
-    <p class="origen__texto">Fehu empezó en el rancho de mi abuelo. Lo que pasaba con cada vaca se anotaba en papel, y con los años se volvía difícil saber cuál había parido, cuál estaba cargada o a cuál le tocaba vacuna. Le hice esta aplicación para su rancho, y es la misma que ahí se usa hoy: él revisa su ganado desde el teléfono. Fehu no es un proyecto: es esa herramienta.</p>
+    <p class="origen__texto">Fehu empezó en el rancho de mi abuelo. Lo que pasaba con cada vaca se anotaba en papel, y con los años se volvía difícil saber cuál había parido, cuál estaba cargada o a cuál le tocaba vacuna. Le hice esta aplicación para su rancho, y ahí la usan hoy: él revisa su ganado desde el teléfono. La misma aplicación que se usa en su rancho es la que ofrecemos a otros.</p>
     <p class="origen__firma">Roberto Linares</p>
     <!-- FOTO CON EL ABUELO: cuando Beto guarde la foto en prodeco/fotos-rancho/,
          se reduce a 1200 px de ancho, se copia a assets/fotos/abuelo.jpg y se
@@ -178,11 +178,11 @@
 </section>
 
 <!-- ============================================================
-     LO QUE TE AHORRA — situaciones reales, sin cifras inventadas
+     DÓNDE SE VA EL DINERO — situaciones reales, sin cifras inventadas ni promesas de retorno
      ============================================================ -->
 <section class="seccion" id="ahorro">
   <div class="contenedor">
-    <p class="rotulo">Por qué se paga solo</p>
+    <p class="rotulo">Dónde se te puede ir dinero</p>
     <h2>Lo que se administra de memoria, <em>cuesta</em>.</h2>
     <div class="ahorros">
       <article class="ahorro"><h3>La vaca que no carga</h3><p>Cada mes que una vaca pasa vacía sin que nadie lo note es un becerro que se retrasa. La aplicación te dice cuáles llevan demasiado tiempo sin cargar.</p></article>
@@ -200,32 +200,12 @@
     <p class="rotulo">Una cuenta para cada quien</p>
     <h2>Cada persona ve <em>lo que le toca</em>. Nada más.</h2>
     <p class="roles__clave"><strong>El dinero es solo tuyo.</strong> Los precios de venta, a quién se vendió y lo que vale la bodega los ven únicamente el dueño y la administración. No es que la pantalla lo esconda: el servidor no se los entrega a nadie más. Tu equipo registra el trabajo del rancho sin enterarse de tus finanzas.</p>
-    <div class="roles">
-      <article class="rol">
-        <h3>El dueño</h3>
-        <p class="rol__sub">Dueño</p>
-        <p>Consulta todo desde su teléfono: ganado, pendientes, indicadores, plan del año e inventario.</p>
-        <p class="rol__no">Ve precios y a quién se vendió.</p>
-      </article>
-      <article class="rol">
-        <h3>Quien captura</h3>
-        <p class="rol__sub">Capturista</p>
-        <p>Registra partos, pesajes, montas, vacunas y ventas, con la fecha en que pasó.</p>
-        <p class="rol__no">No puede borrar. Anota el precio de una venta, pero después ya no lo ve.</p>
-      </article>
-      <article class="rol">
-        <h3>El veterinario</h3>
-        <p class="rol__sub">Médico</p>
-        <p>Registra lo sanitario, palomea el plan del año y ve las medicinas.</p>
-        <p class="rol__no">No ve precios. Puede ser de fuera del rancho sin enterarse del negocio.</p>
-      </article>
-      <article class="rol">
-        <h3>El administrador</h3>
-        <p class="rol__sub">Administración</p>
-        <p>Da de alta animales y anula lo mal capturado, con su motivo.</p>
-        <p class="rol__no">Ve precios. Ni él puede borrar: el original queda tachado a la vista.</p>
-      </article>
-    </div>
+    <ul class="roles-lista">
+      <li><strong>El dueño</strong><span>Ve todo: el ganado, los pendientes, los indicadores, el plan y el inventario, con precios.</span></li>
+      <li><strong>Quien captura</strong><span>Registra partos, pesajes, vacunas y ventas. No borra, y después de anotar una venta ya no ve su precio.</span></li>
+      <li><strong>El veterinario</strong><span>Registra lo sanitario y palomea el plan del año. No ve precios: puede ser de fuera del rancho.</span></li>
+      <li><strong>La administración</strong><span>Da de alta animales y anula lo mal capturado, con su motivo. Tampoco puede borrar.</span></li>
+    </ul>
     <p class="nota roles__nota">Una misma persona puede tener más de un papel. Si en tu rancho hace falta otro tipo de acceso, lo platicamos.</p>
   </div>
 </section>
@@ -238,7 +218,7 @@
     <p class="rotulo">Seguridad y confidencialidad</p>
     <h2>Los datos de tu rancho <em>son tuyos</em>. Y de nadie más.</h2>
     <div class="seguros">
-      <article class="seguro"><h3>Cada rancho, por separado</h3><p>La información de tu rancho se guarda aparte de la de cualquier otro. Ningún otro cliente puede verla, y nosotros solo entramos para darte soporte.</p></article>
+      <article class="seguro"><h3>Cada rancho, por separado</h3><p>La información de tu rancho se guarda aparte de la de cualquier otro. Ningún otro cliente puede verla. Nosotros entramos solo para darte soporte y mantenimiento, o cuando tú nos lo pides.</p></article>
       <article class="seguro"><h3>Nada se borra</h3><p>Ni el administrador puede borrar un registro. Lo mal capturado se anula con su motivo y el original queda a la vista. Queda registrado quién capturó cada cosa y a qué hora, con el reloj del servidor, no el del teléfono.</p></article>
       <article class="seguro"><h3>Respaldo diario</h3><p>Todos los días se hace una copia completa de tu información y se comprueba que esté entera. Los datos viven en la nube de Google, cifrados al viajar y al guardarse.</p></article>
       <article class="seguro"><h3>Te puedes ir cuando quieras</h3><p>Bajas todo a Excel en cualquier momento. Si cancelas, te entregamos un reporte de cierre con tu ganado, tu historial y tu inventario, y tienes 30 días más para consultar.</p></article>
@@ -258,8 +238,14 @@
       <div class="pago">
         <span class="pago__num">1</span>
         <h3>Puesta en marcha</h3>
-        <p>Se paga una sola vez, por capturar tu ganado y capacitar a tu gente. Se cotiza según el tamaño de tu hato y la información que haya que capturar.</p>
-        <p class="pago__referencia">Como referencia: un rancho de 200 cabezas, <strong>$20,000</strong> más IVA.</p>
+        <p>Se paga una sola vez, y es el trabajo que ninguna otra app hace por ti:</p>
+        <ul class="incluye">
+          <li>Revisamos tus libretas, tu Excel o lo que tengas, y ordenamos la información.</li>
+          <li>Capturamos tu ganado animal por animal, con su historia.</li>
+          <li>Revisas con nosotros el censo inicial antes de arrancar.</li>
+          <li>Preparamos la cuenta de cada persona y capacitamos a cada quien.</li>
+        </ul>
+        <p class="pago__referencia">Ejemplo: un rancho de 200 cabezas con su información disponible, alrededor de <strong>$20,000</strong> más IVA. El número exacto depende de cuánto haya que ordenar y capturar.</p>
         <ul>
           <li><strong>De contado</strong>, por transferencia: te regalamos tres meses del servicio.</li>
           <li><strong>A tres meses sin intereses</strong>, con tarjeta.</li>
@@ -309,20 +295,6 @@
       <summary>Ya tengo todo en un Excel. ¿Lo tengo que pasar a mano?</summary>
       <p>No. Nos lo pasas tal como está y de ahí capturamos cada animal. Lo mismo con una libreta: la vemos contigo.</p>
     </details>
-  </div>
-</section>
-
-<!-- ============================================================
-     EL NOMBRE
-     ============================================================ -->
-<section class="seccion nombre" id="nombre">
-  <div class="contenedor nombre__rejilla">
-    <svg class="nombre__runa" viewBox="0 0 32 32" role="img" aria-label="La runa Fehu"><path d="M11 28V4M11 17.5 22 8M11 25 22 15.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    <div>
-      <p class="rotulo">Por qué nos llamamos Fehu <span class="dice">· se dice “fé-ju”</span></p>
-      <h2>La primera runa significa <em>ganado</em>. Y también <em>riqueza</em>.</h2>
-      <p>Para los nórdicos era la misma palabra: tu ganado era tu fortuna. Fehu es la runa de lo que se cuida, crece y se hereda.</p>
-    </div>
   </div>
 </section>
 
@@ -380,6 +352,7 @@
       <p><strong data-marca>Fehu</strong> · control ganadero · Roberto Linares Álvarez · Puebla, México</p>
       <p><a href="privacidad.html">Aviso de privacidad y términos</a></p>
     </div>
+    <p class="pie__nombre"><strong>¿Por qué Fehu?</strong> Se dice “fé-ju”. Es la primera runa nórdica, y significa ganado y también riqueza: para los nórdicos era la misma palabra.</p>
     <p class="pie__legal">Las pantallas y la demostración usan un rancho ficticio: ningún dato es de un rancho real. La aplicación es una herramienta de registro y consulta; las decisiones sobre el manejo, la salud y la venta del ganado son del ganadero y de su médico veterinario. © <span id="anio">2026</span></p>
   </div>
 </footer>
