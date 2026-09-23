@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 140" role="img" aria-label="Cráneo de res con cuernos largos">
+  <!-- Boceto 23/09: cráneo de res de cuernos largos en silueta de grabado. Se dibuja la mitad
+       derecha y se refleja; lo claro son los cortes de la gubia. -->
+  <defs>
+    <g id="mitad">
+      <!-- cuerno: grueso en la base, delgado y hacia arriba en la punta -->
+      <path d="M136 38 C156 32 176 33 194 27 C210 21 225 12 238 2 C232 20 219 34 201 44 C181 54 160 58 138 60 Z"/>
+      <!-- cabeza: frente ancha, pómulo, y un hocico chato -->
+      <path d="M120 26 C133 26 143 31 146 42 C148 54 143 67 138 79 C134 91 132 104 132 116 C132 127 127 135 120 137 L120 26 Z"/>
+    </g>
+  </defs>
+  <g fill="currentColor">
+    <use href="#mitad"/>
+    <use href="#mitad" transform="translate(240 0) scale(-1 1)"/>
+  </g>
+  <g fill="#ECE2CE">
+    <!-- cuencas de los ojos -->
+    <path d="M134 57 C141 61 141 74 132 81 C127 74 127 63 134 57 Z"/>
+    <path d="M106 57 C99 61 99 74 108 81 C113 74 113 63 106 57 Z"/>
+    <!-- fosas nasales -->
+    <ellipse cx="113" cy="123" rx="3.2" ry="5"/>
+    <ellipse cx="127" cy="123" rx="3.2" ry="5"/>
+  </g>
+  <g fill="none" stroke="#ECE2CE" stroke-linecap="round">
+    <path d="M120 36 L120 104" stroke-width="2.6"/>
+    <path d="M112 38 C115 44 115 50 113 54 M128 38 C125 44 125 50 127 54" stroke-width="1.8"/>
+    <path d="M113 90 C115 98 116 106 116 112 M127 90 C125 98 124 106 124 112" stroke-width="1.6"/>
+    <path d="M150 42 C170 40 190 34 210 22 M152 49 C172 47 192 41 218 26" stroke-width="1.5"/>
+    <path d="M90 42 C70 40 50 34 30 22 M88 49 C68 47 48 41 22 26" stroke-width="1.5"/>
+  </g>
+</svg>
