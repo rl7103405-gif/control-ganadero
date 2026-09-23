@@ -131,7 +131,7 @@
   --noche-2: #1C1915;        /* fondo alterno */
   --hueso: #EDE6DA;          /* texto */
   --hueso-suave: #C9C1B3;    /* texto secundario (≈11:1) */
-  --gris: #A39C90;           /* notas (≈7:1) */
+  --gris: #B3AC9F;           /* notas (≈8.5:1; más claro para leer al sol) */
   --linea: rgba(237, 230, 218, .12);
   --ambar: #D08A4E;          /* acento: luz de lámpara — escaso */
   --ambar-claro: #E7A56B;
@@ -148,7 +148,7 @@ html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; background: var(
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 body {
   margin: 0; background: var(--noche); color: var(--hueso);
-  font-family: var(--sans); font-size: clamp(1rem, .95rem + .25vw, 1.125rem); line-height: 1.65;
+  font-family: var(--sans); font-size: clamp(1.0625rem, 1rem + .25vw, 1.1875rem); line-height: 1.65;
   overflow-x: hidden;
 }
 /* Grano finísimo encima de todo: le quita lo "plano de pantalla". */
@@ -176,8 +176,8 @@ h3 { font-size: clamp(1.6rem, 1.3rem + 1.2vw, 2.4rem); margin-bottom: 16px; }
 h1 em, h2 em { font-style: italic; color: var(--ambar-claro); }
 p { margin: 0 0 16px; }
 strong { font-weight: 600; color: var(--hueso); }
-.rotulo { font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; color: var(--gris); margin-bottom: 22px; }
-.nota { color: var(--gris); font-size: .92rem; }
+.rotulo { font-size: .85rem; letter-spacing: .16em; text-transform: uppercase; color: var(--gris); margin-bottom: 22px; }
+.nota { color: var(--gris); font-size: 1rem; }
 .opcional { color: var(--gris); font-weight: 400; }
 
 /* ---------- Botones ---------- */
@@ -212,7 +212,7 @@ strong { font-weight: 600; color: var(--hueso); }
   pointer-events: none;
 }
 .portada__centro { position: relative; display: flex; flex-direction: column; align-items: center; }
-.portada h1 { max-width: 11ch; }
+.portada h1 { max-width: 15ch; }
 .portada__texto { font-size: clamp(1.05rem, 1rem + .4vw, 1.3rem); color: var(--hueso-suave); max-width: 40ch; margin: 30px auto 38px; }
 .portada__botones { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 18px 28px; }
 .telefono--portada { position: relative; width: min(340px, 72vw); margin: clamp(64px, 9vw, 110px) auto 0; }
@@ -295,7 +295,7 @@ details p { color: var(--hueso-suave); max-width: 60ch; padding-bottom: 18px; }
 .contacto > div p { color: var(--hueso-suave); max-width: 40ch; }
 @media (max-width: 760px) { .contacto { grid-template-columns: 1fr; } }
 .formulario { display: flex; flex-direction: column; }
-.formulario label { font-size: .95rem; color: var(--hueso-suave); margin: 22px 0 8px; }
+.formulario label { font-size: 1rem; color: var(--hueso-suave); margin: 22px 0 8px; }
 .formulario label:first-child { margin-top: 0; }
 .formulario input, .formulario select, .formulario textarea {
   font: inherit; color: var(--hueso); background: transparent;
@@ -451,7 +451,7 @@ details p { color: var(--hueso-suave); max-width: 60ch; padding-bottom: 18px; }
 .pago__cierre a, .pie a, .legal a { color: var(--ambar-claro); text-underline-offset: 3px; }
 
 /* ---------- Pie legal y página de privacidad ---------- */
-.pie__legal { margin-top: 22px; max-width: 95ch; font-size: .84rem; line-height: 1.6; color: var(--gris); }
+.pie__legal { margin-top: 22px; max-width: 95ch; font-size: .92rem; line-height: 1.6; color: var(--gris); }
 .legal { padding: clamp(130px, 16vw, 190px) 0 var(--aire); }
 .legal h1 { font-size: clamp(2.2rem, 1.6rem + 3vw, 4rem); margin-bottom: 14px; }
 .legal h2 { font-size: clamp(1.4rem, 1.2rem + 1vw, 2rem); margin: 54px 0 14px; max-width: none; }
@@ -565,7 +565,7 @@ section[id] { scroll-margin-top: 84px; }
 .rol h3 { font-size: clamp(1.35rem, 1.2rem + .6vw, 1.7rem); margin-bottom: 4px; }
 .rol__sub { font-size: .76rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ambar-claro); margin-bottom: 16px; }
 .rol p { color: var(--hueso-suave); }
-.rol__no { font-size: .92rem; color: var(--gris) !important; padding-top: 14px; margin: 14px 0 0; border-top: 1px dashed var(--linea); }
+.rol__no { font-size: 1rem; color: var(--gris) !important; padding-top: 14px; margin: 14px 0 0; border-top: 1px dashed var(--linea); }
 .roles__nota { margin-top: 28px; }
 .rol .rol__sub { color: var(--ambar-claro); }
 
@@ -629,3 +629,30 @@ section[id] { scroll-margin-top: 84px; }
 .ahorro p, .seguro p { color: var(--hueso-suave); margin: 0; }
 .seguro h3::before { content: ''; display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--ambar-claro); margin-right: 12px; vertical-align: middle; }
 .dice { font-family: var(--sans); font-style: normal; font-size: 1em; letter-spacing: .04em; color: var(--gris); white-space: nowrap; }
+
+/* ---------- De dónde viene (23/09: la prueba de rancho real va arriba) ---------- */
+.origen h2 { max-width: 20ch; }
+.origen__texto { font-family: var(--serif); font-size: clamp(1.3rem, 1.15rem + .7vw, 1.75rem); line-height: 1.5; color: var(--hueso); margin: 0; }
+.origen__firma { margin: 28px 0 0; color: var(--ambar-claro); font-size: 1rem; letter-spacing: .04em; }
+.origen__firma::before { content: '— '; }
+
+/* En el celular la página era un muro de 13,000 px: menos aire entre secciones. */
+@media (max-width: 860px) {
+  :root { --aire: 64px; }
+  h2 { margin-bottom: 32px; }
+  /* Pasos y pagos: el número a un lado del texto, no encima. */
+  .pasos li { flex-direction: row; align-items: baseline; gap: 16px; padding: 24px 0 14px; }
+  .pasos__num, .pago__num { font-size: 2.4rem; min-width: 1.1em; }
+  .pago { padding-top: 24px; }
+  .pago__num { margin-bottom: 8px; }
+  .rol { padding: 22px 0 18px; }
+  .rol__sub { margin-bottom: 10px; }
+  .roles__clave { margin: -12px 0 28px; }
+}
+
+/* El titular del 23/09 es más largo que el anterior ("Tu ganado en el celular.
+   Nosotros lo capturamos."): en computadora va más chico para que el botón
+   quepa en la primera pantalla. */
+@media (min-width: 861px) {
+  .portada h1 { font-size: clamp(3rem, min(.8rem + 4.6vw, 9vh + 1rem), 5.6rem); }
+}
