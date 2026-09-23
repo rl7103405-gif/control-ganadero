@@ -707,3 +707,12 @@ section[id] { scroll-margin-top: 84px; }
 
 .pie__nombre { margin-top: 22px; max-width: 70ch; font-size: .95rem; color: var(--hueso-suave); }
 .pie__nombre strong { color: var(--hueso); font-weight: 500; }
+
+/* Ronda 4 (23/09): en celular la barra lleva solo la marca y "Pedir informes"; las cuatro
+   ligas eran letra chica sin uso para quien tiene 60 años. En escritorio se quedan. */
+@media (max-width: 860px) {
+  .nav nav { display: none; }
+  .nav__fila { flex-wrap: nowrap; }
+  .portada { padding-top: 112px; }
+  section[id] { scroll-margin-top: 80px; }
+}
