@@ -17,19 +17,19 @@
      esté puesto, la página no debe aparecer en Google: se llega solo por link. -->
 <meta name="robots" content="noindex, nofollow">
 
-<title>Control ganadero para tu rancho</title>
+<title>Fehu · Control ganadero para tu rancho</title>
 <meta name="description" content="Control de ganado en el teléfono: cada animal con su historia, pendientes de la semana, pesos, plan sanitario e inventario. Nosotros capturamos tu ganado y capacitamos a tu gente.">
 <meta name="theme-color" content="#181613">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Control ganadero para tu rancho">
+<meta property="og:title" content="Fehu · Control ganadero">
 <meta property="og:description" content="Tu ganado en el celular. Nosotros lo capturamos, capacitamos a tu gente y te la dejamos funcionando.">
 <meta property="og:locale" content="es_MX">
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23151310'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%23D08A4E' stroke-width='2.4'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%23D08A4E'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23151310'/%3E%3Cpath d='M11 27V5M11 17.5 22 8.5M11 24.5 22 15.5' fill='none' stroke='%23E7A56B' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
 
-<link rel="stylesheet" href="estilos.css?v=18">
+<link rel="stylesheet" href="estilos.css?v=20">
 </head>
 <body>
 
@@ -41,9 +41,9 @@
 <div class="avance" id="avance" aria-hidden="true"></div>
 <header class="nav">
   <div class="contenedor nav__fila">
-    <a class="marca" href="#inicio" aria-label="Inicio">
-      <svg class="marca__ojo" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3.5c5 0 8.5 3.6 8.5 8.2 0 3-1.4 5-2.6 7.4-1 2-1.4 4.2-1.9 6.4-.4 1.8-1.9 3-4 3s-3.6-1.2-4-3c-.5-2.2-.9-4.4-1.9-6.4-1.2-2.4-2.6-4.4-2.6-7.4 0-4.6 3.500-8.2 8.500-8.2z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="11.5" r="2.6" fill="currentColor"/></svg>
-      <span data-marca>Control ganadero</span>
+    <a class="marca" href="#inicio" aria-label="Fehu, inicio">
+      <svg class="marca__ojo" viewBox="0 0 32 32" aria-hidden="true"><path d="M11 28V4M11 17.5 22 8M11 25 22 15.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span data-marca>Fehu</span><span class="marca__desc">control ganadero</span>
     </a>
     <nav aria-label="Secciones">
       <ul class="nav__ligas">
@@ -92,8 +92,16 @@
   <div class="contenedor angosto">
     <p class="rotulo">De dónde viene</p>
     <h2>Primero la hicimos para <em>un rancho de verdad</em>.</h2>
-    <p class="origen__texto">Empezó en el rancho de mi abuelo. Lo que pasaba con cada vaca se anotaba en papel, y con los años se volvía difícil saber cuál había parido, cuál estaba cargada o a cuál le tocaba vacuna. Le hice esta aplicación para su rancho, y es la misma que ahí se usa hoy. La que te ofrezco no es un proyecto: es esa.</p>
+    <p class="origen__texto">Fehu empezó en el rancho de mi abuelo. Lo que pasaba con cada vaca se anotaba en papel, y con los años se volvía difícil saber cuál había parido, cuál estaba cargada o a cuál le tocaba vacuna. Le hice esta aplicación para su rancho, y es la misma que ahí se usa hoy: él revisa su ganado desde el teléfono. Fehu no es un proyecto: es esa herramienta.</p>
     <p class="origen__firma">Roberto Linares</p>
+    <!-- FOTO CON EL ABUELO: cuando Beto guarde la foto en prodeco/fotos-rancho/,
+         se reduce a 1200 px de ancho, se copia a assets/fotos/abuelo.jpg y se
+         descomenta esto (el alt dice quiénes salen y dónde).
+    <figure class="origen__foto">
+      <img src="assets/fotos/abuelo.jpg" width="1200" height="800" loading="lazy" alt="">
+      <figcaption>Con mi abuelo, en su rancho.</figcaption>
+    </figure>
+    -->
   </div>
 </section>
 
@@ -161,6 +169,7 @@
     <ul class="mas">
       <li><strong>Plan sanitario del año.</strong> Vacunas, baños y desparasitaciones mes por mes; el veterinario las palomea.</li>
       <li><strong>Inventario.</strong> Medicinas, alimento e insumos, con entradas, salidas y lo que vale la bodega.</li>
+      <li><strong>Te avisa dónde tus datos no cuadran.</strong> Un número de casa repetido, un registro después de que el animal se vendió, un parto capturado a un macho, dos partos con semanas de diferencia: la app los encuentra y dice qué revisar.</li>
       <li><strong>Descarga a Excel</strong> del ganado, el historial y el inventario.</li>
       <li><strong>En cualquier teléfono.</strong> Funciona en el navegador de iPhone y de Android.</li>
     </ul>
@@ -238,8 +247,8 @@
 </section>
 
 <!-- ============================================================
-     CÓMO SE PAGA — sin cifras: el precio se da en la cotización
-     (falta que Beto confirme los precios "desde"; ver PUBLICAR.md)
+     CÓMO SE PAGA — precios del contrato del 18/09 (cláusula quinta).
+     La puesta en marcha es el ejemplo del modelo de cobro del 17/09.
      ============================================================ -->
 <section class="seccion" id="pago">
   <div class="contenedor">
@@ -249,7 +258,8 @@
       <div class="pago">
         <span class="pago__num">1</span>
         <h3>Puesta en marcha</h3>
-        <p>Se paga una sola vez, por capturar tu ganado y capacitar a tu gente. Se cotiza según el tamaño de tu hato.</p>
+        <p>Se paga una sola vez, por capturar tu ganado y capacitar a tu gente. Se cotiza según el tamaño de tu hato y la información que haya que capturar.</p>
+        <p class="pago__referencia">Como referencia: un rancho de 200 cabezas, <strong>$20,000</strong> más IVA.</p>
         <ul>
           <li><strong>De contado</strong>, por transferencia: te regalamos tres meses del servicio.</li>
           <li><strong>A tres meses sin intereses</strong>, con tarjeta.</li>
@@ -258,11 +268,21 @@
       <div class="pago">
         <span class="pago__num">2</span>
         <h3>El servicio</h3>
-        <p>Una cuota que se repite cada periodo y paga la base de datos, los respaldos y el mantenimiento. Va según cuántas cabezas tengas: si el hato crece o vendes ganado, al renovar se cobra por las cabezas que tengas entonces.</p>
+        <p>Una cuota que se repite cada periodo y paga la base de datos, los respaldos y el mantenimiento. Va según las cabezas que tengas en el rancho; no cuentan las vendidas ni las muertas.</p>
+        <table class="tarifas">
+          <caption class="oculto-visual">Precio mensual del servicio según las cabezas del rancho</caption>
+          <thead><tr><th scope="col">Cabezas</th><th scope="col">Al mes, más IVA</th></tr></thead>
+          <tbody>
+            <tr><td>Hasta 200</td><td>$400</td></tr>
+            <tr><td>De 201 a 500</td><td>$600</td></tr>
+            <tr><td>De 501 a 1,000</td><td>$900</td></tr>
+            <tr><td>Más de 1,000</td><td>$1,200</td></tr>
+          </tbody>
+        </table>
         <ul>
-          <li><strong>Mensual, trimestral, semestral o anual</strong>: entre más largo el periodo, más descuento.</li>
-          <li>Por <strong>transferencia</strong> o con <strong>cargo automático a tu tarjeta</strong>.</li>
-          <li>Se cancela cuando quieras, sin penalización.</li>
+          <li><strong>Pagando por adelantado, más barato:</strong> 10&nbsp;% menos por trimestre, 15&nbsp;% por semestre y 20&nbsp;% por año.</li>
+          <li>Si el hato crece o vendes ganado, al renovar se cobra por las cabezas que tengas entonces. Te avisamos antes.</li>
+          <li>Por <strong>transferencia</strong> o con <strong>cargo automático a tu tarjeta</strong>. Se cancela cuando quieras, sin penalización.</li>
         </ul>
       </div>
     </div>
@@ -289,6 +309,20 @@
       <summary>Ya tengo todo en un Excel. ¿Lo tengo que pasar a mano?</summary>
       <p>No. Nos lo pasas tal como está y de ahí capturamos cada animal. Lo mismo con una libreta: la vemos contigo.</p>
     </details>
+  </div>
+</section>
+
+<!-- ============================================================
+     EL NOMBRE
+     ============================================================ -->
+<section class="seccion nombre" id="nombre">
+  <div class="contenedor nombre__rejilla">
+    <svg class="nombre__runa" viewBox="0 0 32 32" role="img" aria-label="La runa Fehu"><path d="M11 28V4M11 17.5 22 8M11 25 22 15.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div>
+      <p class="rotulo">Por qué nos llamamos Fehu <span class="dice">· se dice “fé-ju”</span></p>
+      <h2>La primera runa significa <em>ganado</em>. Y también <em>riqueza</em>.</h2>
+      <p>Para los nórdicos era la misma palabra: tu ganado era tu fortuna. Fehu es la runa de lo que se cuida, crece y se hereda.</p>
+    </div>
   </div>
 </section>
 
@@ -343,7 +377,7 @@
 <footer class="pie">
   <div class="contenedor">
     <div class="pie__fila">
-      <p><strong data-marca>Control ganadero</strong> · Roberto Linares Álvarez · Puebla, México</p>
+      <p><strong data-marca>Fehu</strong> · control ganadero · Roberto Linares Álvarez · Puebla, México</p>
       <p><a href="privacidad.html">Aviso de privacidad y términos</a></p>
     </div>
     <p class="pie__legal">Las pantallas y la demostración usan un rancho ficticio: ningún dato es de un rancho real. La aplicación es una herramienta de registro y consulta; las decisiones sobre el manejo, la salud y la venta del ganado son del ganadero y de su médico veterinario. © <span id="anio">2026</span></p>

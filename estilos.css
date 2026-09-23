@@ -656,3 +656,40 @@ section[id] { scroll-margin-top: 84px; }
 @media (min-width: 861px) {
   .portada h1 { font-size: clamp(3rem, min(.8rem + 4.6vw, 9vh + 1rem), 5.6rem); }
 }
+
+/* ============================================================
+   FEHU (23/09): el nombre quedó decidido y la página principal es Fehu.
+   Lo que antes vivía en fehu/fehu.css y hace falta aquí.
+   ============================================================ */
+.marca { font-size: 1.55rem; letter-spacing: .01em; }
+.marca__ojo { width: 30px; height: 30px; }
+/* La marca nunca va sola: "Fehu · control ganadero" */
+.marca__desc { font-family: var(--sans); font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--gris); margin-left: 4px; padding-left: 10px; border-left: 1px solid var(--linea); align-self: center; }
+/* En celular el descriptor va debajo del nombre, para que quepa el botón. */
+@media (max-width: 560px) {
+  .marca { display: grid; grid-template-columns: auto auto; column-gap: 8px; align-items: center; line-height: 1; font-size: 1.35rem; }
+  .marca__ojo { grid-row: span 2; }
+  .marca__desc { margin: 4px 0 0; padding: 0; border: 0; font-size: .6rem; letter-spacing: .1em; }
+}
+
+.nombre__rejilla { display: grid; grid-template-columns: minmax(140px, 300px) 1fr; gap: clamp(36px, 8vw, 120px); align-items: start; }
+.nombre__runa { width: 100%; height: auto; color: var(--ambar-claro); filter: drop-shadow(0 0 40px rgba(231, 165, 107, .35)); position: sticky; top: 120px; }
+.nombre h2 { max-width: 16ch; margin-bottom: 28px; }
+.nombre p { color: var(--hueso-suave); max-width: 52ch; }
+.js .nombre__runa path { stroke-dasharray: 60; stroke-dashoffset: 60; transition: stroke-dashoffset 2.2s ease .2s; }
+.js .nombre__runa.trazada path { stroke-dashoffset: 0; }
+@media (max-width: 760px) { .nombre__rejilla { grid-template-columns: 1fr; } .nombre__runa { width: 110px; position: static; } }
+@media (prefers-reduced-motion: reduce) { .js .nombre__runa path { stroke-dashoffset: 0; transition: none; } }
+
+/* Precios a la vista (23/09) */
+.pago__referencia { margin-top: 14px; padding-left: 14px; border-left: 2px solid var(--ambar-claro); color: var(--hueso) !important; }
+.tarifas { width: 100%; border-collapse: collapse; margin: 22px 0 6px; }
+.tarifas th { text-align: left; font-weight: 500; font-size: .85rem; letter-spacing: .08em; text-transform: uppercase; color: var(--gris); padding: 0 0 10px; border-bottom: 1px solid var(--linea); }
+.tarifas th:last-child, .tarifas td:last-child { text-align: right; }
+.tarifas td { padding: 14px 0; border-bottom: 1px solid var(--linea); color: var(--hueso-suave); }
+.tarifas td:last-child { font-family: var(--serif); font-size: 1.5rem; color: var(--hueso); }
+
+/* Foto con el abuelo (se activa cuando exista el archivo) */
+.origen__foto { margin-top: 40px; }
+.origen__foto img { width: 100%; border-radius: 14px; }
+.origen__foto figcaption { margin-top: 10px; font-size: .95rem; color: var(--gris); }
