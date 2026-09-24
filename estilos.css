@@ -716,3 +716,78 @@ section[id] { scroll-margin-top: 84px; }
   .portada { padding-top: 112px; }
   section[id] { scroll-margin-top: 80px; }
 }
+
+/* ============================================================
+   EL REBAÑO (23/09) — entrada a "Qué hace". Idea del "scroll-morph-hero"
+   de 21st.dev, rehecha sin React y sin secuestrar el scroll (rebano.js).
+   Sin .rebano--vivo es una rejilla quieta: así se ve sin JavaScript, con
+   "reducir movimiento", en pantallas muy bajas o si rebano.js falla.
+   ============================================================ */
+.rebano { position: relative; padding: var(--aire) 0; border-top: 1px solid var(--linea); }
+.rebano__escenario { width: min(1160px, 90%); margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.rebano__intro { display: none; }
+.rebano__texto { max-width: 640px; }
+.rebano__texto h2 { max-width: 16ch; margin: 0 auto 18px; }
+.rebano__texto p:last-child { color: var(--hueso-suave); margin: 0; }
+.rebano__cartas { list-style: none; margin: clamp(36px, 5vw, 60px) 0 0; padding: 0; width: 100%; display: grid; grid-template-columns: repeat(10, 1fr); gap: 10px; }
+.rebano__carta { aspect-ratio: 60 / 85; border-radius: 10px; overflow: hidden; background: var(--noche-2); }
+.rebano__carta img { width: 100%; height: 100%; object-fit: cover; }
+.rebano__reverso { display: none; }
+.rebano__credito { margin: 18px 0 0; font-size: .8rem; letter-spacing: .04em; color: var(--gris); }
+@media (max-width: 860px) {
+  .rebano__cartas { grid-template-columns: repeat(4, 1fr); }
+  /* Esto es solo para la rejilla quieta (enseña 8): el modo vivo decide aparte
+     cuántas cartas anima (12 en ≤767px, 20 arriba), ver @media (max-width: 767px). */
+  .rebano:not(.rebano--vivo) .rebano__carta:nth-child(n+9) { display: none; }
+}
+
+/* Viva: la sección se alarga y el escenario se queda fijo mientras se baja.
+   Un solo alto para todos los anchos: que no cambie al cruzar 767/768px
+   (eso empujaba el contenido de abajo) y un recorrido más corto para el
+   scroll suave cuando alguien toca "Qué hace" en el menú. */
+.rebano--vivo { padding: 0; height: 190vh; height: 190svh; }
+.rebano--vivo .rebano__escenario {
+  position: sticky; top: 0; display: block; width: 100%; height: 100vh; height: 100svh; margin: 0; overflow: hidden;
+  background: radial-gradient(60% 45% at 50% 58%, rgba(208, 138, 78, .10), transparent 70%);
+}
+.rebano--vivo .rebano__intro {
+  display: block; position: absolute; left: 50%; top: 50%; width: min(300px, 56vw); margin: 0; padding-top: 36px; transform: translate(-50%, -50%);
+  font-family: var(--serif); font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.5rem); line-height: 1.2; color: var(--hueso);
+  opacity: 0; pointer-events: none; z-index: 1;
+}
+.rebano--vivo .rebano__intro span {
+  display: block; margin-top: 14px; font-family: var(--sans); font-size: .78rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gris);
+}
+.rebano--vivo .rebano__texto {
+  position: absolute; left: 50%; top: calc(72px + 5vh); width: min(640px, 90%); transform: translateX(-50%);
+  opacity: 0; pointer-events: none; z-index: 3;
+}
+.rebano--vivo .rebano__texto h2 { font-size: clamp(1.9rem, 1.2rem + 2.4vw, 3.2rem); margin-bottom: 14px; }
+.rebano--vivo .rebano__cartas { position: absolute; inset: 0; margin: 0; display: block; }
+.rebano--vivo .rebano__carta {
+  position: absolute; left: 50%; top: 50%; width: 60px; height: 85px; margin: -42.5px 0 0 -30px;
+  aspect-ratio: auto; overflow: visible; border-radius: 0; background: none; opacity: 0; perspective: 800px; z-index: 2;
+}
+.rebano--vivo.rebano--activo .rebano__carta { will-change: transform, opacity; }
+.rebano__giro { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform .6s cubic-bezier(.2, .8, .2, 1); }
+.rebano--vivo .rebano__giro img, .rebano--vivo .rebano__reverso {
+  position: absolute; inset: 0; border-radius: 9px; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+}
+.rebano--vivo .rebano__giro img { background: var(--noche-2); box-shadow: 0 10px 24px -8px rgba(0, 0, 0, .7); }
+.rebano--vivo .rebano__reverso {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; transform: rotateY(180deg);
+  background: #221E19; border: 1px solid rgba(231, 165, 107, .35); color: var(--hueso-suave);
+  font-size: 8px; line-height: 1.2; letter-spacing: .04em; text-align: center;
+}
+.rebano--vivo .rebano__reverso b { font-family: var(--serif); font-size: 17px; font-weight: 500; color: var(--ambar-claro); }
+@media (hover: hover) and (pointer: fine) {
+  .rebano--vivo .rebano__carta:hover .rebano__giro { transform: rotateY(180deg); }
+}
+.rebano--vivo .rebano__credito { position: absolute; left: 0; right: 0; bottom: 14px; margin: 0; text-align: center; z-index: 3; }
+/* En celular: doce tarjetas más chicas (con veinte, el círculo se encimaba). */
+@media (max-width: 767px) {
+  .rebano--vivo .rebano__carta { width: 52px; height: 74px; margin: -37px 0 0 -26px; }
+  .rebano--vivo .rebano__carta:nth-child(n+13) { display: none; }
+  .rebano--vivo .rebano__texto { top: calc(72px + 3vh); }
+  .rebano--vivo .rebano__credito { left: 5%; right: auto; bottom: 22px; text-align: left; }   /* que no choque con el botón de WhatsApp */
+}

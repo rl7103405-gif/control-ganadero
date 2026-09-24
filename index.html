@@ -29,7 +29,7 @@
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23151310'/%3E%3Cpath d='M11 27V5M11 17.5 22 8.5M11 24.5 22 15.5' fill='none' stroke='%23E7A56B' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
 
-<link rel="stylesheet" href="estilos.css?v=22">
+<link rel="stylesheet" href="estilos.css?v=24">
 </head>
 <body>
 
@@ -118,6 +118,49 @@
       <li><span class="pasos__num">3</span><div><h3>Preparamos a tu gente</h3><p>Una cuenta para cada persona, y a cada quien lo capacitamos en lo que va a usar.</p></div></li>
       <li><span class="pasos__num">4</span><div><h3>Te acompañamos tres meses</h3><p>Ajustamos sin costo lo que ya hace la app para que le quede a tu rancho. Los errores se arreglan siempre sin costo.</p></div></li>
     </ol>
+  </div>
+</section>
+
+<!-- ============================================================
+     EL REBAÑO — entrada a "Qué hace" (23/09). Veinte fotos que al bajar se
+     juntan en línea, luego en círculo y al final se abren en arco (rebano.js).
+     El scroll es el de la página: nada se secuestra. Sin rebano.js, con
+     "reducir movimiento" o en pantallas muy bajas se ve una rejilla quieta.
+     Las fotos son de ejemplo (dominio público, créditos en demo/fotos/);
+     se cambian por las del rancho con fotos-rancho/preparar-rebano.py y
+     entonces se quita .rebano__credito.
+     ============================================================ -->
+<section class="rebano" id="rebano" aria-labelledby="rebano-titulo">
+  <div class="rebano__escenario">
+    <p class="rebano__intro" aria-hidden="true">Cada vaca tiene <em>su&nbsp;historia</em>.<span>Sigue bajando</span></p>
+    <div class="rebano__texto">
+      <p class="rotulo">Cada animal</p>
+      <h2 id="rebano-titulo">Cada una, <em>con su ficha</em>.</h2>
+      <p>Su arete, su edad, su potrero, sus partos, sus vacunas y su foto. Abres la vaca en el celular y ahí está todo.</p>
+    </div>
+    <ul class="rebano__cartas" aria-hidden="true">
+      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/01.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>118</b>○ sana</span></div></li>
+      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/02.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>131</b>● cargada</span></div></li>
+      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/03.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>249</b>▪ cría</span></div></li>
+      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/04.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>107</b>✚ enferma</span></div></li>
+      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/05.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>T02</b>★ semental</span></div></li>
+      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/06.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>114</b>● cargada</span></div></li>
+      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/07.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>404</b>engorda</span></div></li>
+      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/08.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>123</b>▲ por parir</span></div></li>
+      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/09.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>126</b>◑ montada</span></div></li>
+      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/10.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>139</b>● cargada</span></div></li>
+      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/11.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>142</b>◆ sincronizada</span></div></li>
+      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/12.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>110</b>○ sana</span></div></li>
+      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/13.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>251</b>▪ cría</span></div></li>
+      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/14.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>147</b>● cargada</span></div></li>
+      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/15.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>152</b>○ sana</span></div></li>
+      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/16.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>133</b>▲ por parir</span></div></li>
+      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/17.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>409</b>engorda</span></div></li>
+      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/18.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>160</b>● cargada</span></div></li>
+      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/19.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>165</b>○ sana</span></div></li>
+      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/20.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>170</b>✚ enferma</span></div></li>
+    </ul>
+    <p class="rebano__credito">Fotos de ejemplo, de dominio público.</p>
   </div>
 </section>
 
@@ -362,5 +405,6 @@
 </a>
 
 <script src="script.js?v=15" defer></script>
+<script src="rebano.js?v=2" defer></script>
 </body>
 </html>
