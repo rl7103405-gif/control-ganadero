@@ -168,7 +168,7 @@
   }
 
   function limpiar() {
-    for (const c of todas) { c.style.transform = ''; c.style.opacity = ''; }
+    for (const c of todas) { c.style.transform = ''; c.style.opacity = ''; c.classList.remove('rebano__carta--volteada'); }
     intro.style.opacity = '';
     texto.style.opacity = '';
     texto.style.transform = '';
@@ -240,6 +240,16 @@
       pedir();
     });
     sec.addEventListener('pointerleave', () => { meta.par = 0; if (vivo) pedir(); });
+
+    // En celular no hay "pasar el mouse" para ver el reverso: tocar una tarjeta la voltea
+    // (otro toque la regresa). Usa "click" porque el navegador no lo dispara cuando el
+    // dedo arrastra para bajar; con mouse no hace nada porque ahí manda el hover.
+    const mazo = sec.querySelector('.rebano__cartas');
+    if (mazo) mazo.addEventListener('click', (e) => {
+      if (!vivo || fino.matches || !(e.target instanceof Element)) return;
+      const carta = e.target.closest('.rebano__carta');
+      if (carta) carta.classList.toggle('rebano__carta--volteada');
+    });
 
     revisar();
   } catch (e) {
