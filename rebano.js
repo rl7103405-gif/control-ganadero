@@ -76,7 +76,7 @@
     const chica = Math.min(1, (2 * Math.PI * rCirculo) / N / (ancho + 8));
     const paso = ancho + 10;
     const rArco = Math.min(W, H * 1.5) * (movil ? 1.4 : 1.1);
-    const centroArco = H * (movil ? 0.2 : 0.25) + rArco;
+    const centroArco = H * (movil ? 0.1 : 0.25) + rArco;
     const abre = movil ? 100 : 130;
     const inicio = -90 - abre / 2;
     const salto = abre / (N - 1);
