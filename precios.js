@@ -1,29 +1,33 @@
 // ============================================================
-// PRECIOS — la tarjeta del servicio (25/09), como la de Mi Cartera:
-// mensual o anual (20 % menos, con confeti al pasar a anual) y el escalón
-// por cabezas. Los importes salen de la tabla de la cláusula quinta del
-// contrato; si cambian allá, se cambian en los value de los radios del HTML.
+// PRECIOS — el servicio con tres tarjetas y un solo mensual/anual (25/09,
+// mock-up de Beto). Anual = 20 % menos y confeti al cambiar a anual. Los
+// importes mensuales viven en el HTML (data-mensual de cada .tarjeta) y salen
+// de la cláusula quinta del contrato; si cambian allá, se cambian ahí.
 //
-// Mejora progresiva: sin este archivo se ve la tabla de siempre. Solo si todo
-// arranca bien se muestran los controles y se pone .plan--vivo (que esconde
-// la tabla). Si el confeti no carga, los precios funcionan igual.
+// Mejora progresiva: sin este archivo las tarjetas se ven con su precio
+// mensual y sin selector. Si el confeti no carga, los precios funcionan igual.
 // ============================================================
 (() => {
   'use strict';
 
   const plan = document.getElementById('plan');
   if (!plan) return;
-  const controles = plan.querySelector('.plan__controles');
-  const monto = document.getElementById('plan-monto');
-  const per = document.getElementById('plan-per');
-  const nota = document.getElementById('plan-nota');
+  const periodo = plan.querySelector('.plan__periodo');
   const leer = document.getElementById('plan-leer');
   const anual = document.getElementById('plan-anual');
-  if (!controles || !monto || !per || !nota || !leer || !anual) return;
+  const tarjetas = Array.from(plan.querySelectorAll('.tarjeta')).map((t) => ({
+    mensual: Number(t.dataset.mensual),
+    titulo: (t.querySelector('.tarjeta__titulo') || {}).textContent || '',
+    cifra: t.querySelector('.tarjeta__cifra'),
+    per: t.querySelector('.tarjeta__per'),
+    nota: t.querySelector('.tarjeta__nota'),
+    aparte: t.querySelector('.tarjeta__aparte'),   // el "más de 1,000" dentro de la tercera tarjeta
+  }));
+  if (!periodo || !leer || !anual || !tarjetas.length || tarjetas.some((t) => !t.mensual || !t.cifra || !t.per || !t.nota)) return;
 
   const DESCUENTO_ANUAL = 0.2;
-  const pesos = (n) => '$' + Math.round(n).toLocaleString('es-MX');
   const cifra = (n) => Math.round(n).toLocaleString('es-MX');
+  const pesos = (n) => '$' + cifra(n);
   const quieto = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   // Confeti con lienzo propio y sin worker: la versión por defecto crea un worker
@@ -36,28 +40,45 @@
     }
   } catch (e) { confeti = null; }
 
-  function elegido(nombre) {
-    const r = plan.querySelector(`input[name="${nombre}"]:checked`);
-    return r || plan.querySelector(`input[name="${nombre}"]`);
-  }
+  const esAnual = () => {
+    const r = periodo.querySelector('input[name="periodo-plan"]:checked');
+    return !!r && r.value === 'anual';
+  };
 
-  function pintar() {
-    const radio = elegido('cabezas-plan');
-    const mensual = Number(radio.value);
-    const escalon = radio.dataset.escalon || '';
-    const esAnual = elegido('periodo-plan').value === 'anual';
-    if (esAnual) {
-      const alAnio = mensual * 12 * (1 - DESCUENTO_ANUAL);
-      monto.textContent = cifra(alAnio);
-      per.textContent = 'al año, más IVA';
-      nota.textContent = `Pago anual por adelantado. Equivale a ${pesos(alAnio / 12)} al mes: te ahorras ${pesos(mensual * 12 - alAnio)} al año.`;
-      leer.textContent = `${escalon}, pago anual: ${pesos(alAnio)} al año, más IVA. `;
-    } else {
-      monto.textContent = cifra(mensual);
-      per.textContent = 'al mes, más IVA';
-      nota.textContent = 'Pagas mes con mes.';
-      leer.textContent = `${escalon}, pago mensual: ${pesos(mensual)} al mes, más IVA. `;
+  // anunciar: solo al cambiar el selector, no al cargar (si no, el lector de pantalla lo lee de golpe).
+  function pintar(anunciar) {
+    const a = esAnual();
+    const frases = [];
+    for (const t of tarjetas) {
+      if (a) {
+        const alAnio = t.mensual * 12 * (1 - DESCUENTO_ANUAL);
+        const ahorro = t.mensual * 12 - alAnio;
+        t.cifra.textContent = cifra(alAnio);
+        t.per.textContent = 'al año, más IVA';
+        t.nota.textContent = `Equivale a ${pesos(alAnio / 12)} al mes. Te ahorras ${pesos(ahorro)}.`;
+        let frase = `${t.titulo}: ${pesos(alAnio)} al año`;
+        // tercera tarjeta: aclarar que de 1,000 cabezas para arriba el precio sube (aparte).
+        if (t.aparte) {
+          const aparteAnual = Number(t.aparte.dataset.mensual) * 12 * (1 - DESCUENTO_ANUAL);
+          t.aparte.textContent = `${pesos(aparteAnual)} al año`;
+          frase += ` de 501 a 1,000; con más de 1,000, ${pesos(aparteAnual)} al año`;
+        }
+        frase += `. Equivale a ${pesos(alAnio / 12)} al mes, te ahorras ${pesos(ahorro)}`;
+        frases.push(frase);
+      } else {
+        t.cifra.textContent = cifra(t.mensual);
+        t.per.textContent = 'al mes, más IVA';
+        t.nota.textContent = '';
+        let frase = `${t.titulo}: ${pesos(t.mensual)} al mes`;
+        if (t.aparte) {
+          const aparteMensual = Number(t.aparte.dataset.mensual);
+          t.aparte.textContent = `${pesos(aparteMensual)} al mes`;
+          frase += ` de 501 a 1,000; con más de 1,000, ${pesos(aparteMensual)} al mes`;
+        }
+        frases.push(frase);
+      }
     }
+    if (anunciar) leer.textContent = (a ? 'Pago anual por adelantado, más IVA. ' : 'Pago mensual, más IVA. ') + frases.join('. ') + '.';
   }
 
   function festejar() {
@@ -71,21 +92,18 @@
   }
 
   try {
-    let periodo = elegido('periodo-plan').value;
-    controles.addEventListener('change', (e) => {
-      const t = e.target;
-      if (!(t instanceof HTMLInputElement)) return;
-      pintar();
-      if (t.name === 'periodo-plan') {
-        if (t.value === 'anual' && periodo !== 'anual') festejar();   // solo al cambiar de verdad a anual
-        periodo = t.value;
-      }
+    let antes = esAnual();
+    periodo.addEventListener('change', () => {
+      const ahora = esAnual();
+      pintar(true);
+      if (ahora && !antes) festejar();   // solo al cambiar de verdad a anual
+      antes = ahora;
     });
     pintar();
-    controles.hidden = false;
+    periodo.hidden = false;
     plan.classList.add('plan--vivo');
   } catch (e) {
-    controles.hidden = true;
+    periodo.hidden = true;
     plan.classList.remove('plan--vivo');
   }
 })();

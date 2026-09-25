@@ -446,7 +446,6 @@ details p { color: var(--hueso-suave); max-width: 60ch; padding-bottom: 18px; }
 @media (prefers-reduced-motion: reduce) { .probar__punto { animation: none; } }
 
 /* ---------- Cómo se paga ---------- */
-.pagos { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 0 clamp(40px, 7vw, 110px); border-top: 1px solid var(--linea); }
 .pago { padding: 34px 0 10px; }
 .pago__num { display: block; font-family: var(--serif); font-size: clamp(3rem, 2rem + 3vw, 4.6rem); line-height: 1; color: var(--ambar-claro); margin-bottom: 18px; }
 .pago p, .pago li { color: var(--hueso-suave); }
@@ -689,14 +688,6 @@ section[id] { scroll-margin-top: 84px; }
 @media (max-width: 760px) { .nombre__rejilla { grid-template-columns: 1fr; } .nombre__runa { width: 110px; position: static; } }
 @media (prefers-reduced-motion: reduce) { .js .nombre__runa path { stroke-dashoffset: 0; transition: none; } }
 
-/* Precios a la vista (23/09) */
-.pago__referencia { margin-top: 14px; padding-left: 14px; border-left: 2px solid var(--ambar-claro); color: var(--hueso) !important; }
-.tarifas { width: 100%; border-collapse: collapse; margin: 22px 0 6px; }
-.tarifas th { text-align: left; font-weight: 500; font-size: .85rem; letter-spacing: .08em; text-transform: uppercase; color: var(--gris); padding: 0 0 10px; border-bottom: 1px solid var(--linea); }
-.tarifas th:last-child, .tarifas td:last-child { text-align: right; }
-.tarifas td { padding: 14px 0; border-bottom: 1px solid var(--linea); color: var(--hueso-suave); }
-.tarifas td:last-child { font-family: var(--serif); font-size: 1.5rem; color: var(--hueso); }
-
 /* Foto con el abuelo (se activa cuando exista el archivo) */
 .origen__foto { margin-top: 40px; }
 .origen__foto img { width: 100%; border-radius: 14px; }
@@ -804,65 +795,87 @@ section[id] { scroll-margin-top: 84px; }
 }
 
 /* ============================================================
-   PRECIOS (25/09) — el servicio en una tarjeta como la de Mi Cartera:
-   mensual / anual (con confeti al pasar a anual) y el escalón por cabezas.
-   Los controles son radios de verdad: el elegido lleva fondo claro, borde y
-   palomita, no solo color (el abuelo es daltónico). Sin .plan--vivo (sin
-   precios.js) se ve la tabla de siempre.
+   PRECIOS (25/09, mock-up de Beto) — dos pagos, uno arriba del otro:
+   1 · la puesta en marcha; 2 · el servicio a lo ancho con tres tarjetas y un
+   solo mensual/anual (confeti al pasar a anual, precios.js). El elegido del
+   selector lleva fondo claro, borde y palomita, no solo color (el abuelo es
+   daltónico). Sin precios.js las tarjetas se ven con su precio mensual.
    ============================================================ */
-.pagos--plan { grid-template-columns: minmax(0, 1fr) minmax(0, 540px); align-items: start; }
-.plan {
-  position: relative; margin-top: 26px; padding: clamp(26px, 3vw, 38px); border-radius: 30px;
-  background: linear-gradient(160deg, rgba(var(--hueso-rgb), .07), rgba(var(--hueso-rgb), .025));
-  border: 1px solid rgba(var(--hueso-rgb), .14);
-  box-shadow: inset 0 1px 0 rgba(var(--hueso-rgb), .08), 0 30px 80px -40px rgba(0, 0, 0, .8);
+.pago--marcha, .pago--servicio {
+  margin-top: 30px; padding: clamp(24px, 3.4vw, 44px); border-radius: 30px;
+  background: linear-gradient(160deg, rgba(var(--hueso-rgb), .06), rgba(var(--hueso-rgb), .02));
+  border: 1px solid rgba(var(--hueso-rgb), .13);
+  box-shadow: inset 0 1px 0 rgba(var(--hueso-rgb), .07), 0 30px 80px -40px rgba(0, 0, 0, .8);
 }
-.plan > p { color: var(--hueso-suave); }
-.plan--vivo .tarifas { display: none; }
-.plan__controles:not([hidden]) { display: flex; flex-direction: column; align-items: flex-start; gap: 26px; margin-top: 24px; }
+.pago__cabeza { display: flex; align-items: center; gap: 18px; margin-bottom: 18px; }
+.pago__cabeza .pago__num { margin: 0; }
+.pago__cabeza h3 { margin: 0; }
+.pago .pago__tipo { margin: 0 0 4px; font-size: .85rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ambar-claro); }
+.pago__cuerpo { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 60px); align-items: start; }
+.pago__cuerpo p, .servicio__texto { color: var(--hueso-suave); }
+.marcha__caja { padding: 24px 26px; border-radius: 22px; background: rgba(var(--hueso-rgb), .04); box-shadow: inset 0 0 0 1px var(--linea); }
+.marcha__ejemplo { margin: 0; }
+.marcha__caja .marcha__monto { margin: 10px 0 0; font-family: var(--serif); font-size: clamp(2.6rem, 2rem + 2.4vw, 3.6rem); line-height: 1; color: var(--hueso); font-variant-numeric: tabular-nums; }
+.marcha__iva { font-family: var(--sans); font-size: 1rem; color: var(--gris); }
+.marcha__nota { margin: 10px 0 0; font-size: .95rem; }
+.marcha__caja .marcha__formas { list-style: none; padding: 0; margin: 16px 0 0; }
+.marcha__formas li { padding: 12px 0; border-top: 1px solid var(--linea); color: var(--hueso-suave); }
+.servicio__texto { max-width: 62ch; margin: 0; }
+
 .plan fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
-.plan .plan__periodo {
-  display: inline-flex; gap: 4px; padding: 4px; border-radius: 999px;
+.plan .plan__periodo:not([hidden]) {
+  display: inline-flex; gap: 4px; margin-top: 24px; padding: 4px; border-radius: 999px;
   background: rgba(var(--hueso-rgb), .05); box-shadow: inset 0 0 0 1px var(--linea); max-width: 100%;
 }
-.plan__cabezas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; width: 100%; }
-.plan__cabezas legend { grid-column: 1 / -1; padding: 0; margin-bottom: 10px; font-size: .95rem; color: var(--hueso-suave); }
 .opcion { position: relative; display: block; cursor: pointer; }
 .opcion input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
 .opcion span {
-  display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 18px;
+  display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 20px;
   border-radius: 999px; font-size: 1rem; color: var(--hueso-suave); transition: background .25s, color .25s, box-shadow .25s;
 }
-.plan__cabezas .opcion span { border-radius: 16px; box-shadow: inset 0 0 0 1px var(--linea); }
 .opcion input:checked + span { background: var(--hueso); color: var(--noche); font-weight: 600; box-shadow: inset 0 0 0 1px var(--hueso); }
 .opcion input:checked + span::before { content: '✓'; font-weight: 700; }
 .opcion input:focus-visible + span { outline: 2px solid var(--ambar-claro); outline-offset: 3px; }
 .opcion:hover input:not(:checked) + span { color: var(--hueso); background: rgba(var(--hueso-rgb), .06); }
 .plan__ahorro { white-space: nowrap; font-size: .78rem; font-weight: 700; padding: 3px 9px; border-radius: 999px; background: var(--ambar-claro); color: var(--noche); }
-.plan__monto {
-  display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 8px; margin: 0;
-  font-family: var(--serif); font-variant-numeric: tabular-nums; line-height: 1; color: var(--hueso);
+
+.pago--servicio .tarjetas { list-style: none; padding: 0; margin: 26px 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+/* .tarjetas .tarjeta: la tarjeta es un <li> dentro de .pago, y ".pago li" le quitaba el relleno. */
+.tarjetas .tarjeta {
+  display: flex; border-top: 0; flex-direction: column; padding: 26px 24px 24px; border-radius: 22px;
+  background: rgba(var(--hueso-rgb), .04); box-shadow: inset 0 0 0 1px var(--linea);
 }
-.plan__signo { font-size: clamp(1.8rem, 1.4rem + 1.4vw, 2.6rem); color: var(--gris); }
-#plan-monto { font-size: clamp(3.6rem, 2.4rem + 5vw, 5.8rem); letter-spacing: -.02em; }
-.plan__per { font-family: var(--sans); font-size: 1rem; color: var(--gris); }
-.plan__precio { width: 100%; }
-.plan__nota { margin: 12px 0 0; color: var(--ambar-claro); min-height: 1.6em; }
-.plan__lista { margin-top: 22px; }
+.tarjeta__titulo { margin: 0; font-family: var(--sans); font-size: 1.05rem; font-weight: 600; color: var(--hueso); }
+.tarjetas .tarjeta__monto { margin: 18px 0 0; font-family: var(--serif); font-size: clamp(3rem, 2.2rem + 2.6vw, 4.4rem); line-height: 1; color: var(--hueso); font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+.tarjeta__signo { font-size: .5em; color: var(--gris); margin-right: 4px; vertical-align: .55em; }
+.tarjetas .tarjeta__per { margin: 8px 0 0; color: var(--gris); font-size: .95rem; }
+.tarjetas .tarjeta__nota { margin: 10px 0 0; color: var(--ambar-claro); font-size: .95rem; min-height: 0; }
+.tarjeta__nota:empty { display: none; }
+.tarjeta__extra { margin: auto 0 0; padding-top: 14px; font-size: .9rem; color: var(--hueso-suave); }
+.pago--servicio .plan__lista { margin-top: 24px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; }
 .plan__lista li { border-top: 0; padding: 8px 0 8px 26px; }
-.plan__boton { width: 100%; margin-top: 22px; justify-content: center; }
-.plan__pie { margin: 14px 0 0; text-align: center; font-size: .9rem; color: var(--gris); }
+.servicio__pie { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-top: 24px; }
+.servicio__pie .plan__pie { margin: 0; font-size: .9rem; color: var(--gris); }
 .confeti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 95; }
 @media (max-width: 860px) {
-  .pagos--plan { grid-template-columns: 1fr; }
-  .plan { margin-top: 34px; }
+  .pago__cuerpo { grid-template-columns: minmax(0, 1fr); }
+  .pago--servicio .tarjetas { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .tarjetas .tarjeta { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: 4px 12px; padding: 20px 20px; }
+  .tarjeta__titulo { grid-column: 1 / -1; }
+  .tarjetas .tarjeta__monto { margin-top: 6px; }
+  .tarjetas .tarjeta__per { margin: 0; text-align: right; }
+  .tarjetas .tarjeta__nota, .tarjeta__extra { grid-column: 1 / -1; margin-top: 4px; padding-top: 0; }
+  .pago--servicio .plan__lista { grid-template-columns: minmax(0, 1fr); }
+  .servicio__pie .btn { width: 100%; justify-content: center; }
 }
 @media (max-width: 400px) {
-  .plan__periodo { display: flex; }
+  .plan .plan__periodo:not([hidden]) { display: flex; }
   .plan__periodo .opcion { flex: 1; }
   .opcion span { padding: 0 12px; }
-  /* La insignia "ahorra 20 %" baja debajo de "Anual" en vez de ensanchar la
-     pastilla: eso era lo que forzaba a .plan a salirse de su columna de grid. */
+  /* "ahorra 20 %" baja debajo de "Anual" en vez de ensanchar la pastilla (a 320 px se salía). */
   #plan-anual span { flex-direction: column; gap: 2px; }
+  /* A 320-360 px el precio anual (p. ej. "$8,640") se salía de su columna y se encimaba
+     con "al año, más IVA". Se apila: una sola columna y el periodo a la izquierda, debajo. */
+  .tarjetas .tarjeta { grid-template-columns: minmax(0, 1fr); }
+  .tarjetas .tarjeta__per { text-align: left; }
 }
-@media (max-width: 480px) { .plan__cabezas .opcion span { padding: 0 8px; font-size: .95rem; } }

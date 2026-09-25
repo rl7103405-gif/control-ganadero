@@ -29,7 +29,7 @@
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23151310'/%3E%3Cpath d='M11 27V5M11 17.5 22 8.5M11 24.5 22 15.5' fill='none' stroke='%23E7A56B' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
 
-<link rel="stylesheet" href="estilos.css?v=29">
+<link rel="stylesheet" href="estilos.css?v=32">
 </head>
 <body>
 
@@ -278,66 +278,85 @@
   <div class="contenedor">
     <p class="rotulo">Cómo se paga</p>
     <h2>El costo tiene dos partes. <em>Sin letras chiquitas</em>.</h2>
-    <!-- 25/09: el servicio va en una tarjeta como la de Mi Cartera (mensual/anual con confeti,
-         y el escalón por cabezas). Sin precios.js se ve la tabla de siempre; los controles y el
-         precio grande solo aparecen si precios.js arranca bien (clase .plan--vivo). -->
-    <div class="pagos pagos--plan">
-      <div class="pago">
+    <!-- 25/09 (mock-up de Beto): dos pagos, uno arriba del otro. 1 · la puesta en marcha;
+         2 · el servicio a lo ancho, con tres tarjetas y un solo mensual/anual (confeti al pasar a
+         anual, precios.js). La tercera tarjeta agrupa 501–1,000 ($900) y dice aparte el precio de
+         más de 1,000 ($1,200): así el contrato (cuatro escalones) y la página dicen lo mismo.
+         Sin precios.js las tarjetas se ven con su precio mensual y sin el selector. -->
+    <div class="pago pago--marcha">
+      <div class="pago__cabeza">
         <span class="pago__num">1</span>
-        <h3>Puesta en marcha</h3>
-        <p>Se paga una sola vez. Esto es lo que hacemos antes de entregártela funcionando:</p>
-        <ul class="incluye">
-          <li>Revisamos tus libretas, tu Excel o lo que tengas, y ordenamos la información.</li>
-          <li>Capturamos tu ganado animal por animal, con su historia.</li>
-          <li>Revisas con nosotros el censo inicial antes de arrancar.</li>
-          <li>Preparamos la cuenta de cada persona y capacitamos a cada quien.</li>
-        </ul>
-        <p class="pago__referencia">Ejemplo: un rancho de 200 cabezas con su información disponible, alrededor de <strong>$20,000</strong> más IVA. El número exacto depende de cuánto haya que ordenar y capturar.</p>
-        <ul>
-          <li><strong>De contado</strong>, por transferencia: te regalamos tres meses del servicio.</li>
-          <li><strong>A tres meses sin intereses</strong>, con tarjeta.</li>
-        </ul>
-      </div>
-      <div class="pago plan" id="plan">
-        <span class="pago__num">2</span>
-        <h3>El servicio</h3>
-        <p>Una cuota que se repite cada periodo y paga la base de datos, los respaldos y el mantenimiento. Va según las cabezas que tengas en el rancho.</p>
-        <div class="plan__controles" hidden>
-          <fieldset class="plan__periodo">
-            <legend class="oculto-visual">¿Cómo quieres pagar?</legend>
-            <label class="opcion"><input type="radio" name="periodo-plan" value="mensual" checked><span>Mensual</span></label>
-            <label class="opcion" id="plan-anual"><input type="radio" name="periodo-plan" value="anual"><span>Anual <b class="plan__ahorro">ahorra 20&nbsp;%</b></span></label>
-          </fieldset>
-          <fieldset class="plan__cabezas">
-            <legend>¿Cuántas cabezas tienes?</legend>
-            <label class="opcion"><input type="radio" name="cabezas-plan" value="400" data-escalon="Hasta 200 cabezas" checked><span>Hasta 200</span></label>
-            <label class="opcion"><input type="radio" name="cabezas-plan" value="600" data-escalon="201 a 500 cabezas"><span>201 a 500</span></label>
-            <label class="opcion"><input type="radio" name="cabezas-plan" value="900" data-escalon="501 a 1,000 cabezas"><span>501 a 1,000</span></label>
-            <label class="opcion"><input type="radio" name="cabezas-plan" value="1200" data-escalon="Más de 1,000 cabezas"><span>Más de 1,000</span></label>
-          </fieldset>
-          <div class="plan__precio" aria-live="polite" aria-atomic="true">
-            <span class="oculto-visual" id="plan-leer"></span>
-            <p class="plan__monto" aria-hidden="true"><span class="plan__signo">$</span><span id="plan-monto">400</span><span class="plan__per" id="plan-per">al mes, más IVA</span></p>
-            <p class="plan__nota" id="plan-nota">Pagas mes con mes.</p>
-          </div>
+        <div>
+          <p class="pago__tipo">Un solo pago</p>
+          <h3>Puesta en marcha</h3>
         </div>
-        <table class="tarifas">
-          <caption class="oculto-visual">Precio mensual del servicio según las cabezas del rancho</caption>
-          <thead><tr><th scope="col">Cabezas</th><th scope="col">Al mes, más IVA</th></tr></thead>
-          <tbody>
-            <tr><td>Hasta 200</td><td>$400</td></tr>
-            <tr><td>De 201 a 500</td><td>$600</td></tr>
-            <tr><td>De 501 a 1,000</td><td>$900</td></tr>
-            <tr><td>Más de 1,000</td><td>$1,200</td></tr>
-          </tbody>
-        </table>
-        <ul class="incluye plan__lista">
-          <li>No cuentan las vendidas ni las muertas.</li>
-          <li>Si el hato crece o vendes ganado, al renovar se cobra por las cabezas que tengas entonces. Te avisamos antes.</li>
-          <li>Por <strong>transferencia</strong> o con <strong>cargo automático a tu tarjeta</strong>. Se cancela cuando quieras, sin penalización.</li>
-          <li><strong>Pagando por adelantado, más barato:</strong> 10&nbsp;% menos por trimestre, 15&nbsp;% por semestre y 20&nbsp;% por año.</li>
-        </ul>
-        <a class="btn btn--claro plan__boton" href="#contacto">Quiero verla en mi rancho</a>
+      </div>
+      <div class="pago__cuerpo">
+        <div>
+          <p>Esto es lo que hacemos antes de entregártela funcionando:</p>
+          <ul class="incluye">
+            <li>Revisamos tus libretas, tu Excel o lo que tengas, y ordenamos la información.</li>
+            <li>Capturamos tu ganado animal por animal, con su historia.</li>
+            <li>Revisas con nosotros el censo inicial antes de arrancar.</li>
+            <li>Preparamos la cuenta de cada persona y capacitamos a cada quien.</li>
+          </ul>
+        </div>
+        <div class="marcha__caja">
+          <p class="marcha__ejemplo">Ejemplo: un rancho de 200 cabezas con su información disponible, alrededor de</p>
+          <p class="marcha__monto"><span class="tarjeta__signo">$</span>20,000 <span class="marcha__iva">más IVA</span></p>
+          <p class="marcha__nota">El número exacto depende de cuánto haya que ordenar y capturar.</p>
+          <ul class="marcha__formas">
+            <li><strong>De contado</strong>, por transferencia: te regalamos tres meses del servicio.</li>
+            <li><strong>A tres meses sin intereses</strong>, con tarjeta.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="pago pago--servicio plan" id="plan">
+      <div class="pago__cabeza">
+        <span class="pago__num">2</span>
+        <div>
+          <p class="pago__tipo">Cada mes o cada año</p>
+          <h3>El servicio</h3>
+        </div>
+      </div>
+      <p class="servicio__texto">Una cuota que se repite cada periodo y paga la base de datos, los respaldos y el mantenimiento. Va según las cabezas que tengas en el rancho.</p>
+      <fieldset class="plan__periodo" hidden>
+        <legend class="oculto-visual">¿Cómo quieres pagar?</legend>
+        <label class="opcion"><input type="radio" name="periodo-plan" value="mensual" checked><span>Mensual</span></label>
+        <label class="opcion" id="plan-anual"><input type="radio" name="periodo-plan" value="anual"><span>Anual <b class="plan__ahorro">ahorra 20&nbsp;%</b></span></label>
+      </fieldset>
+      <p class="oculto-visual" id="plan-leer" aria-live="polite" aria-atomic="true"></p>
+      <ul class="tarjetas">
+        <li class="tarjeta" data-mensual="400">
+          <h4 class="tarjeta__titulo">Hasta 200 cabezas</h4>
+          <p class="tarjeta__monto"><span class="tarjeta__signo">$</span><span class="tarjeta__cifra">400</span></p>
+          <p class="tarjeta__per">al mes, más IVA</p>
+          <p class="tarjeta__nota"></p>
+        </li>
+        <li class="tarjeta" data-mensual="600">
+          <h4 class="tarjeta__titulo">De 201 a 500 cabezas</h4>
+          <p class="tarjeta__monto"><span class="tarjeta__signo">$</span><span class="tarjeta__cifra">600</span></p>
+          <p class="tarjeta__per">al mes, más IVA</p>
+          <p class="tarjeta__nota"></p>
+        </li>
+        <li class="tarjeta" data-mensual="900">
+          <h4 class="tarjeta__titulo">Más de 500 cabezas</h4>
+          <p class="tarjeta__monto"><span class="tarjeta__signo">$</span><span class="tarjeta__cifra">900</span></p>
+          <p class="tarjeta__per">al mes, más IVA</p>
+          <p class="tarjeta__nota"></p>
+          <p class="tarjeta__extra">De 501 a 1,000 cabezas. Con más de 1,000, <strong class="tarjeta__aparte" data-mensual="1200">$1,200 al mes</strong>.</p>
+        </li>
+      </ul>
+      <ul class="incluye plan__lista">
+        <li>No cuentan las vendidas ni las muertas.</li>
+        <li>Si el hato crece o vendes ganado, al renovar se cobra por las cabezas que tengas entonces. Te avisamos antes.</li>
+        <li>Por <strong>transferencia</strong> o con <strong>cargo automático a tu tarjeta</strong>. Se cancela cuando quieras, sin penalización.</li>
+        <li><strong>Pagando por adelantado, más barato:</strong> 10&nbsp;% menos por trimestre, 15&nbsp;% por semestre y 20&nbsp;% por año.</li>
+      </ul>
+      <div class="servicio__pie">
+        <a class="btn btn--claro" href="#contacto">Quiero verla en mi rancho</a>
         <p class="plan__pie">Precios en pesos mexicanos.</p>
       </div>
     </div>
@@ -433,7 +452,7 @@
 
 <script src="script.js?v=15" defer></script>
 <script src="assets/confetti.min.js?v=2" defer></script>
-<script src="precios.js?v=2" defer></script>
+<script src="precios.js?v=5" defer></script>
 <script src="rebano.js?v=5" defer></script>
 </body>
 </html>
