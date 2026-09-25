@@ -1,3 +1,10 @@
 APRENDIZAJES.md
 PUBLICAR.md
 .DS_Store
+
+# Borradores y material de revisión: viven en disco, no se publican (24/09).
+# fehu/index.html se queda: redirige la dirección vieja a la página nueva.
+boceto/
+revision/
+fehu/*
+!fehu/index.html
