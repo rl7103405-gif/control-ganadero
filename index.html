@@ -29,7 +29,7 @@
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23151310'/%3E%3Cpath d='M11 27V5M11 17.5 22 8.5M11 24.5 22 15.5' fill='none' stroke='%23E7A56B' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
 
-<link rel="stylesheet" href="estilos.css?v=32">
+<link rel="stylesheet" href="estilos.css?v=33">
 </head>
 <body>
 
@@ -305,12 +305,25 @@
           <p class="marcha__ejemplo">Ejemplo: un rancho de 200 cabezas con su información disponible, alrededor de</p>
           <p class="marcha__monto"><span class="tarjeta__signo">$</span>20,000 <span class="marcha__iva">más IVA</span></p>
           <p class="marcha__nota">El número exacto depende de cuánto haya que ordenar y capturar.</p>
-          <ul class="marcha__formas">
-            <li><strong>De contado</strong>, por transferencia: te regalamos tres meses del servicio.</li>
-            <li><strong>A tres meses sin intereses</strong>, con tarjeta.</li>
-          </ul>
         </div>
       </div>
+      <!-- 25/09 (Beto): dos formas de pagar la puesta en marcha, lado a lado. Reemplaza los
+           "tres meses sin intereses con tarjeta": el contrato con la abogada debe cambiar igual. -->
+      <p class="marcha__pregunta">¿Cómo la pagas? Con el ejemplo de 200 cabezas:</p>
+      <ul class="marcha__opciones">
+        <li class="marcha__opcion">
+          <h4 class="marcha__tipo">De contado</h4>
+          <p class="marcha__cifra"><span class="tarjeta__signo">$</span>20,000 <span class="marcha__iva">más IVA</span></p>
+          <p class="marcha__como">En un solo pago, por transferencia.</p>
+          <p class="marcha__regalo">✓ Te regalamos tres meses del servicio.</p>
+        </li>
+        <li class="marcha__opcion">
+          <h4 class="marcha__tipo">En dos pagos</h4>
+          <p class="marcha__cifra">2 × <span class="tarjeta__signo">$</span>10,000 <span class="marcha__iva">más IVA</span></p>
+          <p class="marcha__como">Dos pagos iguales.</p>
+          <p class="marcha__sin">— Sin los meses de regalo.</p>
+        </li>
+      </ul>
     </div>
 
     <div class="pago pago--servicio plan" id="plan">

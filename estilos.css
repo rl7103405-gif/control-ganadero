@@ -818,8 +818,19 @@ section[id] { scroll-margin-top: 84px; }
 .marcha__caja .marcha__monto { margin: 10px 0 0; font-family: var(--serif); font-size: clamp(2.6rem, 2rem + 2.4vw, 3.6rem); line-height: 1; color: var(--hueso); font-variant-numeric: tabular-nums; }
 .marcha__iva { font-family: var(--sans); font-size: 1rem; color: var(--gris); }
 .marcha__nota { margin: 10px 0 0; font-size: .95rem; }
-.marcha__caja .marcha__formas { list-style: none; padding: 0; margin: 16px 0 0; }
-.marcha__formas li { padding: 12px 0; border-top: 1px solid var(--linea); color: var(--hueso-suave); }
+/* Las dos formas de pagar la puesta en marcha (25/09). Prefijo .pago--marcha: las reglas viejas
+   ".pago p/.pago li/.pago ul" (clase+tipo) si no, les ganan. Lo de regalo o no lleva palomita o
+   raya además del color (el abuelo es daltónico). */
+.pago--marcha .marcha__pregunta { margin: 28px 0 0; color: var(--hueso); font-weight: 600; }
+.pago--marcha .marcha__opciones { list-style: none; padding: 0; margin: 14px 0 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.pago--marcha .marcha__opcion { padding: 22px 24px; border: 0; border-radius: 22px; background: rgba(var(--hueso-rgb), .04); box-shadow: inset 0 0 0 1px var(--linea); }
+.pago--marcha .marcha__opcion:first-child { box-shadow: inset 0 0 0 1px rgba(var(--ambar-claro-rgb), .55); }
+.marcha__tipo { margin: 0; font-family: var(--sans); font-size: 1.05rem; font-weight: 600; color: var(--hueso); }
+.pago--marcha .marcha__cifra { margin: 12px 0 0; font-family: var(--serif); font-size: clamp(2rem, 1.6rem + 1.6vw, 2.8rem); line-height: 1.05; color: var(--hueso); font-variant-numeric: tabular-nums; }
+.pago--marcha .marcha__como { margin: 10px 0 0; }
+.pago--marcha .marcha__regalo { margin: 10px 0 0; color: var(--ambar-claro); font-weight: 600; }
+.pago--marcha .marcha__sin { margin: 10px 0 0; color: var(--gris); }
+@media (max-width: 640px) { .pago--marcha .marcha__opciones { grid-template-columns: minmax(0, 1fr); } }
 .servicio__texto { max-width: 62ch; margin: 0; }
 
 .plan fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
