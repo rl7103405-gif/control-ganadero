@@ -29,7 +29,7 @@
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23151310'/%3E%3Cpath d='M11 27V5M11 17.5 22 8.5M11 24.5 22 15.5' fill='none' stroke='%23E7A56B' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
 
-<link rel="stylesheet" href="estilos.css?v=27">
+<link rel="stylesheet" href="estilos.css?v=29">
 </head>
 <body>
 
@@ -278,7 +278,10 @@
   <div class="contenedor">
     <p class="rotulo">Cómo se paga</p>
     <h2>El costo tiene dos partes. <em>Sin letras chiquitas</em>.</h2>
-    <div class="pagos">
+    <!-- 25/09: el servicio va en una tarjeta como la de Mi Cartera (mensual/anual con confeti,
+         y el escalón por cabezas). Sin precios.js se ve la tabla de siempre; los controles y el
+         precio grande solo aparecen si precios.js arranca bien (clase .plan--vivo). -->
+    <div class="pagos pagos--plan">
       <div class="pago">
         <span class="pago__num">1</span>
         <h3>Puesta en marcha</h3>
@@ -295,10 +298,29 @@
           <li><strong>A tres meses sin intereses</strong>, con tarjeta.</li>
         </ul>
       </div>
-      <div class="pago">
+      <div class="pago plan" id="plan">
         <span class="pago__num">2</span>
         <h3>El servicio</h3>
-        <p>Una cuota que se repite cada periodo y paga la base de datos, los respaldos y el mantenimiento. Va según las cabezas que tengas en el rancho; no cuentan las vendidas ni las muertas.</p>
+        <p>Una cuota que se repite cada periodo y paga la base de datos, los respaldos y el mantenimiento. Va según las cabezas que tengas en el rancho.</p>
+        <div class="plan__controles" hidden>
+          <fieldset class="plan__periodo">
+            <legend class="oculto-visual">¿Cómo quieres pagar?</legend>
+            <label class="opcion"><input type="radio" name="periodo-plan" value="mensual" checked><span>Mensual</span></label>
+            <label class="opcion" id="plan-anual"><input type="radio" name="periodo-plan" value="anual"><span>Anual <b class="plan__ahorro">ahorra 20&nbsp;%</b></span></label>
+          </fieldset>
+          <fieldset class="plan__cabezas">
+            <legend>¿Cuántas cabezas tienes?</legend>
+            <label class="opcion"><input type="radio" name="cabezas-plan" value="400" data-escalon="Hasta 200 cabezas" checked><span>Hasta 200</span></label>
+            <label class="opcion"><input type="radio" name="cabezas-plan" value="600" data-escalon="201 a 500 cabezas"><span>201 a 500</span></label>
+            <label class="opcion"><input type="radio" name="cabezas-plan" value="900" data-escalon="501 a 1,000 cabezas"><span>501 a 1,000</span></label>
+            <label class="opcion"><input type="radio" name="cabezas-plan" value="1200" data-escalon="Más de 1,000 cabezas"><span>Más de 1,000</span></label>
+          </fieldset>
+          <div class="plan__precio" aria-live="polite" aria-atomic="true">
+            <span class="oculto-visual" id="plan-leer"></span>
+            <p class="plan__monto" aria-hidden="true"><span class="plan__signo">$</span><span id="plan-monto">400</span><span class="plan__per" id="plan-per">al mes, más IVA</span></p>
+            <p class="plan__nota" id="plan-nota">Pagas mes con mes.</p>
+          </div>
+        </div>
         <table class="tarifas">
           <caption class="oculto-visual">Precio mensual del servicio según las cabezas del rancho</caption>
           <thead><tr><th scope="col">Cabezas</th><th scope="col">Al mes, más IVA</th></tr></thead>
@@ -309,15 +331,19 @@
             <tr><td>Más de 1,000</td><td>$1,200</td></tr>
           </tbody>
         </table>
-        <ul>
-          <li><strong>Pagando por adelantado, más barato:</strong> 10&nbsp;% menos por trimestre, 15&nbsp;% por semestre y 20&nbsp;% por año.</li>
+        <ul class="incluye plan__lista">
+          <li>No cuentan las vendidas ni las muertas.</li>
           <li>Si el hato crece o vendes ganado, al renovar se cobra por las cabezas que tengas entonces. Te avisamos antes.</li>
           <li>Por <strong>transferencia</strong> o con <strong>cargo automático a tu tarjeta</strong>. Se cancela cuando quieras, sin penalización.</li>
+          <li><strong>Pagando por adelantado, más barato:</strong> 10&nbsp;% menos por trimestre, 15&nbsp;% por semestre y 20&nbsp;% por año.</li>
         </ul>
+        <a class="btn btn--claro plan__boton" href="#contacto">Quiero verla en mi rancho</a>
+        <p class="plan__pie">Precios en pesos mexicanos.</p>
       </div>
     </div>
     <p class="pago__cierre">Todo se factura. Los errores se arreglan siempre sin costo, y cualquier trabajo nuevo se cotiza antes de hacerse. <a href="#contacto">Pide tu cotización</a> y te decimos el número exacto para tu rancho.</p>
   </div>
+  <canvas class="confeti" id="confeti" aria-hidden="true"></canvas>
 </section>
 
 <!-- ============================================================
@@ -406,6 +432,8 @@
 </a>
 
 <script src="script.js?v=15" defer></script>
+<script src="assets/confetti.min.js?v=2" defer></script>
+<script src="precios.js?v=2" defer></script>
 <script src="rebano.js?v=5" defer></script>
 </body>
 </html>

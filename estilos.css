@@ -802,3 +802,67 @@ section[id] { scroll-margin-top: 84px; }
   .rebano--vivo .rebano__texto { top: calc(72px + 3vh); }
   .rebano--vivo .rebano__credito { left: 5%; right: auto; bottom: 22px; text-align: left; }   /* que no choque con el botón de WhatsApp */
 }
+
+/* ============================================================
+   PRECIOS (25/09) — el servicio en una tarjeta como la de Mi Cartera:
+   mensual / anual (con confeti al pasar a anual) y el escalón por cabezas.
+   Los controles son radios de verdad: el elegido lleva fondo claro, borde y
+   palomita, no solo color (el abuelo es daltónico). Sin .plan--vivo (sin
+   precios.js) se ve la tabla de siempre.
+   ============================================================ */
+.pagos--plan { grid-template-columns: minmax(0, 1fr) minmax(0, 540px); align-items: start; }
+.plan {
+  position: relative; margin-top: 26px; padding: clamp(26px, 3vw, 38px); border-radius: 30px;
+  background: linear-gradient(160deg, rgba(var(--hueso-rgb), .07), rgba(var(--hueso-rgb), .025));
+  border: 1px solid rgba(var(--hueso-rgb), .14);
+  box-shadow: inset 0 1px 0 rgba(var(--hueso-rgb), .08), 0 30px 80px -40px rgba(0, 0, 0, .8);
+}
+.plan > p { color: var(--hueso-suave); }
+.plan--vivo .tarifas { display: none; }
+.plan__controles:not([hidden]) { display: flex; flex-direction: column; align-items: flex-start; gap: 26px; margin-top: 24px; }
+.plan fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.plan .plan__periodo {
+  display: inline-flex; gap: 4px; padding: 4px; border-radius: 999px;
+  background: rgba(var(--hueso-rgb), .05); box-shadow: inset 0 0 0 1px var(--linea); max-width: 100%;
+}
+.plan__cabezas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; width: 100%; }
+.plan__cabezas legend { grid-column: 1 / -1; padding: 0; margin-bottom: 10px; font-size: .95rem; color: var(--hueso-suave); }
+.opcion { position: relative; display: block; cursor: pointer; }
+.opcion input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.opcion span {
+  display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 18px;
+  border-radius: 999px; font-size: 1rem; color: var(--hueso-suave); transition: background .25s, color .25s, box-shadow .25s;
+}
+.plan__cabezas .opcion span { border-radius: 16px; box-shadow: inset 0 0 0 1px var(--linea); }
+.opcion input:checked + span { background: var(--hueso); color: var(--noche); font-weight: 600; box-shadow: inset 0 0 0 1px var(--hueso); }
+.opcion input:checked + span::before { content: '✓'; font-weight: 700; }
+.opcion input:focus-visible + span { outline: 2px solid var(--ambar-claro); outline-offset: 3px; }
+.opcion:hover input:not(:checked) + span { color: var(--hueso); background: rgba(var(--hueso-rgb), .06); }
+.plan__ahorro { white-space: nowrap; font-size: .78rem; font-weight: 700; padding: 3px 9px; border-radius: 999px; background: var(--ambar-claro); color: var(--noche); }
+.plan__monto {
+  display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 8px; margin: 0;
+  font-family: var(--serif); font-variant-numeric: tabular-nums; line-height: 1; color: var(--hueso);
+}
+.plan__signo { font-size: clamp(1.8rem, 1.4rem + 1.4vw, 2.6rem); color: var(--gris); }
+#plan-monto { font-size: clamp(3.6rem, 2.4rem + 5vw, 5.8rem); letter-spacing: -.02em; }
+.plan__per { font-family: var(--sans); font-size: 1rem; color: var(--gris); }
+.plan__precio { width: 100%; }
+.plan__nota { margin: 12px 0 0; color: var(--ambar-claro); min-height: 1.6em; }
+.plan__lista { margin-top: 22px; }
+.plan__lista li { border-top: 0; padding: 8px 0 8px 26px; }
+.plan__boton { width: 100%; margin-top: 22px; justify-content: center; }
+.plan__pie { margin: 14px 0 0; text-align: center; font-size: .9rem; color: var(--gris); }
+.confeti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 95; }
+@media (max-width: 860px) {
+  .pagos--plan { grid-template-columns: 1fr; }
+  .plan { margin-top: 34px; }
+}
+@media (max-width: 400px) {
+  .plan__periodo { display: flex; }
+  .plan__periodo .opcion { flex: 1; }
+  .opcion span { padding: 0 12px; }
+  /* La insignia "ahorra 20 %" baja debajo de "Anual" en vez de ensanchar la
+     pastilla: eso era lo que forzaba a .plan a salirse de su columna de grid. */
+  #plan-anual span { flex-direction: column; gap: 2px; }
+}
+@media (max-width: 480px) { .plan__cabezas .opcion span { padding: 0 8px; font-size: .95rem; } }
