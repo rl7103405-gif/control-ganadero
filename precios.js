@@ -53,17 +53,19 @@
       if (a) {
         const alAnio = t.mensual * 12 * (1 - DESCUENTO_ANUAL);
         const ahorro = t.mensual * 12 - alAnio;
-        t.cifra.textContent = cifra(alAnio);
-        t.per.textContent = 'al año, más IVA';
-        t.nota.textContent = `Equivale a ${pesos(alAnio / 12)} al mes. Te ahorras ${pesos(ahorro)}.`;
-        let frase = `${t.titulo}: ${pesos(alAnio)} al año`;
+        // En anual, en grande va lo que sale AL MES (se compara directo con el mensual: $400 contra
+        // $320) y abajo el año completo, que se paga por adelantado, y el ahorro (Beto, 26/09).
+        t.cifra.textContent = cifra(alAnio / 12);
+        t.per.textContent = 'al mes, más IVA';
+        t.nota.textContent = `${pesos(alAnio)} al año, pagado por adelantado. Te ahorras ${pesos(ahorro)}.`;
+        let frase = `${t.titulo}: ${pesos(alAnio / 12)} al mes pagando el año por adelantado, ${pesos(alAnio)} al año`;
         // tercera tarjeta: aclarar que de 1,000 cabezas para arriba el precio sube (aparte).
         if (t.aparte) {
           const aparteAnual = Number(t.aparte.dataset.mensual) * 12 * (1 - DESCUENTO_ANUAL);
-          t.aparte.textContent = `${pesos(aparteAnual)} al año`;
-          frase += ` de 501 a 1,000; con más de 1,000, ${pesos(aparteAnual)} al año`;
+          t.aparte.textContent = `${pesos(aparteAnual / 12)} al mes (${pesos(aparteAnual)} al año)`;
+          frase += `, de 501 a 1,000; con más de 1,000, ${pesos(aparteAnual / 12)} al mes, ${pesos(aparteAnual)} al año`;
         }
-        frase += `. Equivale a ${pesos(alAnio / 12)} al mes, te ahorras ${pesos(ahorro)}`;
+        frase += `. Te ahorras ${pesos(ahorro)}`;
         frases.push(frase);
       } else {
         t.cifra.textContent = cifra(t.mensual);
