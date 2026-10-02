@@ -29,7 +29,7 @@
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23151310'/%3E%3Cpath d='M11 27V5M11 17.5 22 8.5M11 24.5 22 15.5' fill='none' stroke='%23E7A56B' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
 
-<link rel="stylesheet" href="estilos.css?v=34">
+<link rel="stylesheet" href="estilos.css?v=35">
 </head>
 <body>
 
@@ -156,6 +156,14 @@
         <figure class="telefono paso__foto"><img src="assets/demo-04-pendientes.webp?v=7" width="390" height="844" loading="lazy" alt="Pantalla de pendientes: 18 pendientes en 17 animales, y dos para atender primero."></figure>
       </article>
     </div>
+    <div class="historia__fijo" aria-hidden="true">
+      <div class="telefono telefono--pila" id="pila">
+        <img src="assets/demo-01-rancho.webp?v=7" width="390" height="844" alt="" class="activa">
+        <img src="assets/demo-02-placenta.webp?v=7" width="390" height="844" alt="">
+        <img src="assets/demo-03-pesos.webp?v=7" width="390" height="844" alt="">
+        <img src="assets/demo-04-pendientes.webp?v=7" width="390" height="844" alt="">
+      </div>
+    </div>
   </div>
   <div class="contenedor">
     <ul class="mas">
@@ -228,7 +236,7 @@
     <p class="rotulo">Cómo se paga</p>
     <h2>El costo tiene dos partes. <em>Sin letras chiquitas</em>.</h2>
     <!-- 25/09 (mock-up de Beto): dos pagos, uno arriba del otro. 1 · la puesta en marcha;
-         2 · el servicio a lo ancho, con tres tarjetas y un solo mensual/anual (sin confeti desde el 02/10; antes: confeti al pasar a
+         2 · el servicio a lo ancho, con tres tarjetas y un solo mensual/anual (confeti al pasar a
          anual, precios.js). La tercera tarjeta agrupa 501–1,000 ($900) y dice aparte el precio de
          más de 1,000 ($1,200): así el contrato (cuatro escalones) y la página dicen lo mismo.
          Sin precios.js las tarjetas se ven con su precio mensual y sin el selector. -->
@@ -324,6 +332,7 @@
     </div>
     <p class="pago__cierre">Todo se factura. Los errores se arreglan siempre sin costo, y cualquier trabajo nuevo se cotiza antes de hacerse. <a href="#contacto">Pide tu cotización</a> y te decimos el número exacto para tu rancho.</p>
   </div>
+  <canvas class="confeti" id="confeti" aria-hidden="true"></canvas>
 </section>
 
 <!-- ============================================================
@@ -412,7 +421,8 @@
 </footer>
 
 
-<script src="script.js?v=16" defer></script>
-<script src="precios.js?v=7" defer></script>
+<script src="script.js?v=17" defer></script>
+<script src="assets/confetti.min.js?v=2" defer></script>
+<script src="precios.js?v=8" defer></script>
 </body>
 </html>

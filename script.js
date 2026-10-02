@@ -178,9 +178,43 @@ const pintarNav = () => nav.classList.toggle('con-fondo', window.scrollY > 24);
 pintarNav();
 window.addEventListener('scroll', pintarNav, { passive: true });
 
-// Sin animaciones de adorno (02/10/2026): quien la usa tiene unos 60 años y el
-// scroll que movía cosas confundía. Solo queda el scroll suave a la demo, y no si
-// la persona pidió reducir movimiento.
+/* ---------- Qué hace: el teléfono fijo cambia de pantalla ----------
+   Cada paso del texto le dice al teléfono qué pantalla enseñar. En celular
+   el teléfono fijo no existe (cada paso trae su foto), y esto no estorba. */
+const pasos = document.querySelectorAll('.paso');
+const pantallas = document.querySelectorAll('#pila img');
+function activar(n) {
+  pasos.forEach((p) => p.classList.toggle('activo', p.dataset.pantalla === String(n)));
+  pantallas.forEach((img, i) => img.classList.toggle('activa', i === n));
+}
+const enCelular = window.matchMedia('(max-width: 860px)');
+if (pasos.length && enCelular.matches) {
+  // CELULAR: la mitad de arriba la ocupa el teléfono fijo. Manda el último paso
+  // cuyo título ya subió a la zona de lectura (debajo del teléfono). Así la
+  // pantalla cambia justo cuando llega el texto nuevo, no cuando el viejo ya se escondió.
+  let turno = false;
+  const elegir = () => {
+    turno = false;
+    const linea = window.innerHeight * 0.84;
+    let n = 0;
+    pasos.forEach((p, i) => { if (p.querySelector('h3').getBoundingClientRect().top <= linea) n = i; });
+    activar(n);
+  };
+  window.addEventListener('scroll', () => { if (!turno) { turno = true; requestAnimationFrame(elegir); } }, { passive: true });
+  elegir();
+} else if ('IntersectionObserver' in window && pasos.length) {
+  const vigia = new IntersectionObserver((entradas) => {
+    entradas.forEach((en) => { if (en.isIntersecting) activar(Number(en.target.dataset.pantalla)); });
+  }, { rootMargin: '-45% 0px -45% 0px' });
+  pasos.forEach((p) => vigia.observe(p));
+  activar(0);
+} else {
+  pasos.forEach((p) => p.classList.add('activo'));
+}
+
+// Animaciones (02/10/2026): quien la usa tiene unos 60 años y el scroll que movía
+// cosas confundía. Por decisión de Beto solo quedan dos: el teléfono de "Qué hace"
+// que cambia de pantalla al bajar, y el confeti al pasar a anual (precios.js).
 const quieto = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ---------- El teléfono de la portada se puede probar ----------

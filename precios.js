@@ -1,11 +1,11 @@
 // ============================================================
 // PRECIOS — el servicio con tres tarjetas y un solo mensual/anual (25/09,
-// mock-up de Beto). Anual = 20 % menos (sin confeti desde el 02/10: nada de adorno). Los
+// mock-up de Beto). Anual = 20 % menos y confeti al cambiar a anual. Los
 // importes mensuales viven en el HTML (data-mensual de cada .tarjeta) y salen
 // de la cláusula quinta del contrato; si cambian allá, se cambian ahí.
 //
 // Mejora progresiva: sin este archivo las tarjetas se ven con su precio
-// mensual y sin selector.
+// mensual y sin selector. Si el confeti no carga, los precios funcionan igual.
 // ============================================================
 (() => {
   'use strict';
@@ -28,7 +28,17 @@
   const DESCUENTO_ANUAL = 0.2;
   const cifra = (n) => Math.round(n).toLocaleString('es-MX');
   const pesos = (n) => '$' + cifra(n);
+  const quieto = window.matchMedia('(prefers-reduced-motion: reduce)');
 
+  // Confeti con lienzo propio y sin worker: la versión por defecto crea un worker
+  // desde un Blob, que la CSP de la página bloquea.
+  let confeti = null;
+  try {
+    const lienzo = document.getElementById('confeti');
+    if (lienzo && typeof window.confetti === 'function' && typeof window.confetti.create === 'function') {
+      confeti = window.confetti.create(lienzo, { resize: true, useWorker: false, disableForReducedMotion: true });
+    }
+  } catch (e) { confeti = null; }
 
   const esAnual = () => {
     const r = periodo.querySelector('input[name="periodo-plan"]:checked');
@@ -73,9 +83,23 @@
     if (anunciar) leer.textContent = (a ? 'Pago anual por adelantado, más IVA. ' : 'Pago mensual, más IVA. ') + frases.join('. ') + '.';
   }
 
+  function festejar() {
+    if (!confeti || quieto.matches) return;
+    const r = anual.getBoundingClientRect();
+    confeti({
+      particleCount: 110, spread: 75, startVelocity: 38, ticks: 200, scalar: 0.95,
+      origin: { x: (r.left + r.width / 2) / window.innerWidth, y: (r.top + r.height / 2) / window.innerHeight },
+      colors: ['#E7A56B', '#EDE6DA', '#D08A4E', '#C9C1B3', '#8FB39A'],
+    });
+  }
+
   try {
+    let antes = esAnual();
     periodo.addEventListener('change', () => {
+      const ahora = esAnual();
       pintar(true);
+      if (ahora && !antes) festejar();   // solo al cambiar de verdad a anual
+      antes = ahora;
     });
     pintar();
     periodo.hidden = false;
