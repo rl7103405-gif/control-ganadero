@@ -29,7 +29,7 @@
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23151310'/%3E%3Cpath d='M11 27V5M11 17.5 22 8.5M11 24.5 22 15.5' fill='none' stroke='%23E7A56B' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
 
-<link rel="stylesheet" href="estilos.css?v=33">
+<link rel="stylesheet" href="estilos.css?v=34">
 </head>
 <body>
 
@@ -38,7 +38,6 @@
 <!-- ============================================================
      NAVEGACIÓN
      ============================================================ -->
-<div class="avance" id="avance" aria-hidden="true"></div>
 <header class="nav">
   <div class="contenedor nav__fila">
     <a class="marca" href="#inicio" aria-label="Fehu, inicio">
@@ -65,8 +64,8 @@
 <section class="portada" id="inicio">
   <div class="contenedor portada__centro">
     <p class="rotulo">Para ranchos de cría y engorda</p>
-    <h1><span class="pal"><span class="pal__in pal--1">Tu</span></span> <span class="pal"><span class="pal__in pal--2">ganado</span></span> <span class="pal"><span class="pal__in pal--2">en</span></span> <span class="pal"><span class="pal__in pal--3">el</span></span> <span class="pal"><span class="pal__in pal--3">celular.</span></span> <em><span class="pal"><span class="pal__in pal--4">Nosotros</span></span> <span class="pal"><span class="pal__in pal--5">lo</span></span> <span class="pal"><span class="pal__in pal--6">capturamos</span></span></em><span class="pal"><span class="pal__in pal--6">.</span></span></h1>
-    <p class="portada__texto">No te dejamos una app vacía para que la llenes tú. <strong>Nos das tu libreta, tu Excel o lo que tengas: capturamos cada animal, capacitamos a tu gente y te la dejamos funcionando.</strong></p>
+    <h1>Lo que no se anota, <em>se pierde</em>.</h1>
+    <p class="portada__texto">El becerro que nadie apuntó, el pesaje que se quedó en una libreta, la vacuna que se pasó, no saber cuánto ganó cada animal. <strong>Fehu lleva tu ganado en el celular, y nosotros lo capturamos: nos das tu libreta o tu Excel, capacitamos a tu gente y te la dejamos funcionando.</strong></p>
     <div class="portada__botones">
       <a class="btn btn--claro" href="#contacto">Quiero verla en mi rancho</a>
       <a class="liga-flecha" href="#telefono-portada">Pruébala ahora <span aria-hidden="true">↓</span></a>
@@ -123,49 +122,6 @@
 </section>
 
 <!-- ============================================================
-     EL REBAÑO — entrada a "Qué hace" (23/09). Veinte fotos que al bajar se
-     juntan en línea, luego en círculo y al final se abren en arco (rebano.js).
-     El scroll es el de la página: nada se secuestra. Sin rebano.js, con
-     "reducir movimiento" o en pantallas muy bajas se ve una rejilla quieta.
-     Las fotos son de ejemplo (dominio público, créditos en demo/fotos/);
-     se cambian por las del rancho con fotos-rancho/preparar-rebano.py y
-     entonces se quita .rebano__credito.
-     ============================================================ -->
-<section class="rebano" id="rebano" aria-labelledby="rebano-titulo">
-  <div class="rebano__escenario">
-    <p class="rebano__intro" aria-hidden="true">Cada vaca tiene <em>su&nbsp;historia</em>.<span>Sigue bajando</span></p>
-    <div class="rebano__texto">
-      <p class="rotulo">Cada animal</p>
-      <h2 id="rebano-titulo">Cada una, <em>con su ficha</em>.</h2>
-      <p>Su arete, su edad, su potrero, sus partos, sus vacunas y su foto. Abres la vaca en el celular y ahí está todo.</p>
-    </div>
-    <ul class="rebano__cartas" aria-hidden="true">
-      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/01.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>118</b>○ sana</span></div></li>
-      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/02.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>131</b>● cargada</span></div></li>
-      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/03.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>249</b>▪ cría</span></div></li>
-      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/04.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>107</b>✚ enferma</span></div></li>
-      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/05.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>T02</b>★ semental</span></div></li>
-      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/06.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>114</b>● cargada</span></div></li>
-      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/07.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>404</b>engorda</span></div></li>
-      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/08.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>123</b>▲ por parir</span></div></li>
-      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/09.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>126</b>◑ montada</span></div></li>
-      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/10.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>139</b>● cargada</span></div></li>
-      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/11.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>142</b>◆ sincronizada</span></div></li>
-      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/12.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>110</b>○ sana</span></div></li>
-      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/13.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>251</b>▪ cría</span></div></li>
-      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/14.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>147</b>● cargada</span></div></li>
-      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/15.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>152</b>○ sana</span></div></li>
-      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/16.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>133</b>▲ por parir</span></div></li>
-      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/17.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>409</b>engorda</span></div></li>
-      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/18.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>160</b>● cargada</span></div></li>
-      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/19.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>165</b>○ sana</span></div></li>
-      <li class="rebano__carta"><div class="rebano__giro"><img src="assets/rebano/20.jpg" width="216" height="306" alt="" loading="lazy" decoding="async"><span class="rebano__reverso"><b>170</b>✚ enferma</span></div></li>
-    </ul>
-    <p class="rebano__credito">Fotos de ejemplo, de dominio público.</p>
-  </div>
-</section>
-
-<!-- ============================================================
      QUÉ HACE — solo lo que la aplicación ya hace hoy
      ============================================================ -->
 <section class="historia" id="que-hace">
@@ -199,14 +155,6 @@
         <p>Enfermas, por parir, sincronizaciones sin cerrar y vacas que no han vuelto a cargar. <strong>Nadie tiene que acordarse</strong>: la lista se arma sola con lo que se captura.</p>
         <figure class="telefono paso__foto"><img src="assets/demo-04-pendientes.webp?v=7" width="390" height="844" loading="lazy" alt="Pantalla de pendientes: 18 pendientes en 17 animales, y dos para atender primero."></figure>
       </article>
-    </div>
-    <div class="historia__fijo" aria-hidden="true">
-      <div class="telefono telefono--pila" id="pila">
-        <img src="assets/demo-01-rancho.webp?v=7" width="390" height="844" alt="" class="activa">
-        <img src="assets/demo-02-placenta.webp?v=7" width="390" height="844" alt="">
-        <img src="assets/demo-03-pesos.webp?v=7" width="390" height="844" alt="">
-        <img src="assets/demo-04-pendientes.webp?v=7" width="390" height="844" alt="">
-      </div>
     </div>
   </div>
   <div class="contenedor">
@@ -280,7 +228,7 @@
     <p class="rotulo">Cómo se paga</p>
     <h2>El costo tiene dos partes. <em>Sin letras chiquitas</em>.</h2>
     <!-- 25/09 (mock-up de Beto): dos pagos, uno arriba del otro. 1 · la puesta en marcha;
-         2 · el servicio a lo ancho, con tres tarjetas y un solo mensual/anual (confeti al pasar a
+         2 · el servicio a lo ancho, con tres tarjetas y un solo mensual/anual (sin confeti desde el 02/10; antes: confeti al pasar a
          anual, precios.js). La tercera tarjeta agrupa 501–1,000 ($900) y dice aparte el precio de
          más de 1,000 ($1,200): así el contrato (cuatro escalones) y la página dicen lo mismo.
          Sin precios.js las tarjetas se ven con su precio mensual y sin el selector. -->
@@ -376,7 +324,6 @@
     </div>
     <p class="pago__cierre">Todo se factura. Los errores se arreglan siempre sin costo, y cualquier trabajo nuevo se cotiza antes de hacerse. <a href="#contacto">Pide tu cotización</a> y te decimos el número exacto para tu rancho.</p>
   </div>
-  <canvas class="confeti" id="confeti" aria-hidden="true"></canvas>
 </section>
 
 <!-- ============================================================
@@ -413,17 +360,12 @@
       <p>Llena esto y se abre WhatsApp con el mensaje ya escrito. Te contestamos por ahí.</p>
       <p class="nota">No guardamos nada en ninguna base de datos: lo que escribes viaja a WhatsApp dentro del mensaje, y tú confirmas el envío.</p>
       <noscript><p class="nota">Este formulario necesita JavaScript para abrir WhatsApp.</p></noscript>
+      <div class="probar-antes">
+        <p><strong>¿Todavía no la has visto?</strong> Pruébala antes: es la aplicación de verdad, con un rancho ficticio, y no te pide registrarte.</p>
+        <a class="btn" href="demo/index.html">Pruébala ahora</a>
+      </div>
     </div>
     <form class="formulario" id="formulario" novalidate>
-      <label for="f-nombre">Tu nombre</label>
-      <input id="f-nombre" name="nombre" autocomplete="name" maxlength="80" required>
-
-      <label for="f-rancho">Nombre del rancho <span class="opcional">(opcional)</span></label>
-      <input id="f-rancho" name="rancho" maxlength="80">
-
-      <label for="f-lugar">Municipio y estado</label>
-      <input id="f-lugar" name="lugar" maxlength="80" required>
-
       <label for="f-cabezas">¿Cuántas cabezas tienes, más o menos?</label>
       <input id="f-cabezas" name="cabezas" inputmode="numeric" maxlength="7" required>
 
@@ -437,8 +379,17 @@
         <option>Otro</option>
       </select>
 
+      <label for="f-lugar">Municipio y estado</label>
+      <input id="f-lugar" name="lugar" maxlength="80" required>
+
+      <label for="f-rancho">Nombre del rancho <span class="opcional">(opcional)</span></label>
+      <input id="f-rancho" name="rancho" maxlength="80">
+
       <label for="f-nota">Algo más que quieras contarnos <span class="opcional">(opcional)</span></label>
       <textarea id="f-nota" name="nota" rows="3" maxlength="400"></textarea>
+
+      <label for="f-nombre">Tu nombre</label>
+      <input id="f-nombre" name="nombre" autocomplete="name" maxlength="80" required>
 
       <p class="formulario__error" id="error" role="alert"></p>
       <button class="btn" type="submit">Enviar por WhatsApp</button>
@@ -460,13 +411,8 @@
   </div>
 </footer>
 
-<a class="flotante" id="flotante" href="#contacto" aria-label="Escribir por WhatsApp">
-  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3a.5.5 0 0 0 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.4-.3z"/></svg>
-</a>
 
-<script src="script.js?v=15" defer></script>
-<script src="assets/confetti.min.js?v=2" defer></script>
-<script src="precios.js?v=6" defer></script>
-<script src="rebano.js?v=5" defer></script>
+<script src="script.js?v=16" defer></script>
+<script src="precios.js?v=7" defer></script>
 </body>
 </html>

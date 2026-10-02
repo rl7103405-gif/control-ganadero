@@ -2,8 +2,11 @@
    celular siempre haya cómo volver a la página. */
 .aviso-demo{position:fixed;left:0;right:0;bottom:0;z-index:9999;margin:0;padding:0 12px;min-height:46px;display:flex;align-items:center;justify-content:space-between;gap:12px;
 font:600 13px/1.2 system-ui,sans-serif;color:#151310;background:#E7A56B}
-.aviso-demo a{color:#151310;padding:13px 4px;text-underline-offset:3px;white-space:nowrap}
-.aviso-demo span{text-align:right;opacity:.85}
+.aviso-demo a{color:#151310;padding:0 4px;min-height:44px;display:inline-flex;align-items:center;text-underline-offset:3px;white-space:nowrap}
+.aviso-demo span{opacity:.85;font-weight:500}
+/* La salida a ventas (02/10): lleva al formulario de la página, que pregunta lo del rancho y abre WhatsApp. */
+.aviso-demo .aviso-demo__quiero{background:#151310;color:#E7A56B;border-radius:999px;padding:10px 16px;text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+@media (max-width:420px){.aviso-demo span{display:none}}
 body{padding-bottom:48px}
 .enmarcada .aviso-demo{display:none}
 .enmarcada body{padding-bottom:0}

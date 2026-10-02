@@ -6,7 +6,12 @@ if (window.top !== window.self) {
   document.documentElement.classList.add('enmarcada');
 } else {
   var liga = document.getElementById('volver');
+  var quiero = document.getElementById('quiero');
   try {
-    if (liga && document.referrer && new URL(document.referrer).origin === location.origin) liga.href = document.referrer;
-  } catch (e) { /* se queda la liga de fábrica */ }
+    if (document.referrer && new URL(document.referrer).origin === location.origin) {
+      if (liga) liga.href = document.referrer;
+      // "Quiero esto para mi rancho": a la misma página de donde vino, al formulario.
+      if (quiero) quiero.href = document.referrer.split('#')[0] + '#contacto';
+    }
+  } catch (e) { /* se quedan las ligas de fábrica */ }
 }

@@ -42,14 +42,6 @@ function ligaWhatsApp(texto) {
   return 'https://wa.me/' + numero + '?text=' + encodeURIComponent(texto);
 }
 
-// Botón flotante: si ya hay número, va directo a WhatsApp.
-if (hayNumero) {
-  const flotante = $('#flotante');
-  flotante.href = ligaWhatsApp('Hola, quiero informes del control ganadero.');
-  flotante.target = '_blank';
-  flotante.rel = 'noopener noreferrer';
-}
-
 $('#anio').textContent = String(new Date().getFullYear());
 
 /* ---------- Formulario → mensaje de WhatsApp ---------- */
@@ -95,7 +87,7 @@ formulario.addEventListener('submit', (e) => {
 
   error.textContent = '';
   if (respaldo) respaldo.textContent = '';
-  ['#f-nombre', '#f-lugar', '#f-cabezas'].forEach((id) => marcarInvalido(id, false));
+  ['#f-cabezas', '#f-lugar', '#f-nombre'].forEach((id) => marcarInvalido(id, false));
 
   // Cabezas: solo dígitos, sin adivinar. Antes un .replace(/\D/g,'') convertía
   // "-10" en 10 y "1.5" en 15 sin avisar; ahora se aceptan espacios y comas de
@@ -113,9 +105,9 @@ formulario.addEventListener('submit', (e) => {
   };
 
   const invalidos = [];
-  if (!datos.nombre) invalidos.push({ id: '#f-nombre', mensaje: 'tu nombre' });
-  if (!datos.lugar) invalidos.push({ id: '#f-lugar', mensaje: 'el municipio y estado' });
   if (!cabezasValidas) invalidos.push({ id: '#f-cabezas', mensaje: null });
+  if (!datos.lugar) invalidos.push({ id: '#f-lugar', mensaje: 'el municipio y estado' });
+  if (!datos.nombre) invalidos.push({ id: '#f-nombre', mensaje: 'tu nombre' });
 
   if (invalidos.length) {
     invalidos.forEach((inv) => marcarInvalido(inv.id, true));
@@ -186,87 +178,10 @@ const pintarNav = () => nav.classList.toggle('con-fondo', window.scrollY > 24);
 pintarNav();
 window.addEventListener('scroll', pintarNav, { passive: true });
 
-/* ---------- Qué hace: el teléfono fijo cambia de pantalla ----------
-   Cada paso del texto le dice al teléfono qué pantalla enseñar. En celular
-   el teléfono fijo no existe (cada paso trae su foto), y esto no estorba. */
-const pasos = document.querySelectorAll('.paso');
-const pantallas = document.querySelectorAll('#pila img');
-function activar(n) {
-  pasos.forEach((p) => p.classList.toggle('activo', p.dataset.pantalla === String(n)));
-  pantallas.forEach((img, i) => img.classList.toggle('activa', i === n));
-}
-const enCelular = window.matchMedia('(max-width: 860px)');
-if (pasos.length && enCelular.matches) {
-  // CELULAR: la mitad de arriba la ocupa el teléfono fijo. Manda el último paso
-  // cuyo título ya subió a la zona de lectura (debajo del teléfono). Así la
-  // pantalla cambia justo cuando llega el texto nuevo, no cuando el viejo ya se escondió.
-  let turno = false;
-  const elegir = () => {
-    turno = false;
-    const linea = window.innerHeight * 0.84;
-    let n = 0;
-    pasos.forEach((p, i) => { if (p.querySelector('h3').getBoundingClientRect().top <= linea) n = i; });
-    activar(n);
-  };
-  window.addEventListener('scroll', () => { if (!turno) { turno = true; requestAnimationFrame(elegir); } }, { passive: true });
-  elegir();
-} else if ('IntersectionObserver' in window && pasos.length) {
-  const vigia = new IntersectionObserver((entradas) => {
-    entradas.forEach((en) => { if (en.isIntersecting) activar(Number(en.target.dataset.pantalla)); });
-  }, { rootMargin: '-45% 0px -45% 0px' });
-  pasos.forEach((p) => vigia.observe(p));
-  activar(0);
-} else {
-  pasos.forEach((p) => p.classList.add('activo'));
-}
-
-/* ---------- Aparición suave ----------
-   Nunca deja nada oculto: si el observador no dispara (navegador viejo,
-   captura de pantalla, impresión), a los 2.5 s se destapa todo. */
-const aparecen = document.querySelectorAll('.ahorro, .seguro, .rol, .nombre, .historia h2, .pasos li, .tabla-precio, details, .mas li, .contacto > div, .formulario');
-if ('IntersectionObserver' in window) {
-  const observador = new IntersectionObserver((entradas) => {
-    entradas.forEach((en) => {
-      if (en.isIntersecting) { en.target.classList.add('visible'); observador.unobserve(en.target); }
-    });
-  }, { rootMargin: '0px 0px -8% 0px' });
-  aparecen.forEach((el) => { el.classList.add('aparece'); observador.observe(el); });
-  setTimeout(() => aparecen.forEach((el) => el.classList.add('visible')), 2500);
-}
-
-/* ---------- Movimiento de la portada ----------
-   Barra de avance, teléfono que se inclina con el ratón (solo con ratón de
-   verdad, no en táctil) y que se hunde un poco al bajar. Todo con
-   requestAnimationFrame, y nada si la persona pidió reducir movimiento. */
+// Sin animaciones de adorno (02/10/2026): quien la usa tiene unos 60 años y el
+// scroll que movía cosas confundía. Solo queda el scroll suave a la demo, y no si
+// la persona pidió reducir movimiento.
 const quieto = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const avance = $('#avance');
-const telefonoPortada = $('#telefono-portada img');
-const portada = $('.portada');
-let inclinaX = 0, inclinaY = 0, pendiente = false;
-
-function pintar() {
-  pendiente = false;
-  const alto = document.documentElement.scrollHeight - window.innerHeight;
-  if (avance) avance.style.transform = 'scaleX(' + (alto > 0 ? Math.min(1, window.scrollY / alto) : 0) + ')';
-  if (!quieto && telefonoPortada && telefonoPortada.isConnected && window.scrollY < window.innerHeight * 1.6) {
-    const baja = Math.min(60, window.scrollY * 0.08);
-    telefonoPortada.style.transform = 'translateY(' + baja + 'px) rotateX(' + inclinaY + 'deg) rotateY(' + inclinaX + 'deg)';
-  }
-}
-function pedirPintar() { if (!pendiente) { pendiente = true; requestAnimationFrame(pintar); } }
-window.addEventListener('scroll', pedirPintar, { passive: true });
-window.addEventListener('resize', pedirPintar);
-pintar();
-
-if (!quieto && portada && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-  portada.addEventListener('mousemove', (e) => {
-    const r = portada.getBoundingClientRect();
-    inclinaX = ((e.clientX - r.left) / r.width - 0.5) * 10;   // grados, izquierda-derecha
-    inclinaY = -((e.clientY - r.top) / r.height - 0.5) * 6;   // grados, arriba-abajo
-    pedirPintar();
-  });
-  portada.addEventListener('mouseleave', () => { inclinaX = 0; inclinaY = 0; pedirPintar(); });
-}
 
 /* ---------- El teléfono de la portada se puede probar ----------
    El botón es una liga normal a la demo (así funciona sin JavaScript y en
@@ -311,7 +226,10 @@ if (probar && figura && pantalla) {
     const titulo = document.createElement('span'); titulo.className = 'ventana-titulo'; titulo.textContent = 'Demostración · rancho ficticio, datos inventados';
     const cerrar = document.createElement('button'); cerrar.type = 'button'; cerrar.className = 'ventana-cerrar'; cerrar.textContent = 'Cerrar ✕';
     cerrar.addEventListener('click', cerrarDemo);
-    barra.append(puntos, titulo, cerrar);
+    // La misma salida a ventas que trae la demo en celular: cierra y lleva al formulario.
+    const quiero = document.createElement('a'); quiero.className = 'ventana-quiero'; quiero.href = '#contacto'; quiero.textContent = 'Quiero esto para mi rancho';
+    quiero.addEventListener('click', () => { cerrarDemo(); });
+    barra.append(puntos, titulo, quiero, cerrar);
 
     const marco = document.createElement('iframe');
     marco.src = probar.href.split('#')[0] + '#/rancho';   // la misma liga del botón, sirva desde donde sirva
@@ -326,17 +244,8 @@ if (probar && figura && pantalla) {
     pantalla.textContent = '';
     pantalla.append(barra, marco);
     figura.classList.add('viva');
-    inclinaX = 0; inclinaY = 0;
     window.scrollTo({ top: figura.getBoundingClientRect().top + window.scrollY - 88, behavior: quieto ? 'auto' : 'smooth' });
   });
   window.addEventListener('resize', escalarDemo);
 }
 
-/* ---------- La runa se traza cuando ya se está viendo ---------- */
-const runa = document.querySelector('.nombre__runa');
-if (runa) {
-  if ('IntersectionObserver' in window) {
-    const ojo = new IntersectionObserver((en) => { if (en[0].isIntersecting) { runa.classList.add('trazada'); ojo.disconnect(); } }, { threshold: 0.75 });
-    ojo.observe(runa);
-  } else { runa.classList.add('trazada'); }
-}

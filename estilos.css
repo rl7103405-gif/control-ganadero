@@ -209,7 +209,7 @@ strong { font-weight: 600; color: var(--hueso); }
 
 /* ---------- Portada: un solo objeto iluminado ---------- */
 .portada { position: relative; padding: clamp(140px, 18vw, 210px) 0 0; text-align: center; overflow: hidden; }
-.portada::before { /* la luz de lámpara detrás del teléfono */
+.portada::before { /* la luz de lámpara detrás del teléfono (quieta) */
   content: ''; position: absolute; left: 50%; bottom: -8%; width: min(1100px, 150vw); aspect-ratio: 1; transform: translateX(-50%);
   background: radial-gradient(circle, rgba(208, 138, 78, .30) 0%, rgba(208, 138, 78, .10) 32%, transparent 62%);
   pointer-events: none;
@@ -331,16 +331,6 @@ details p { color: var(--hueso-suave); max-width: 60ch; padding-bottom: 18px; }
 .pagina-404 { min-height: 100vh; padding-bottom: 120px; }
 .liga-regreso { display: inline-block; padding: 12px 0; }
 
-/* Botón flotante */
-.flotante {
-  position: fixed; right: 22px; bottom: 22px; z-index: 60;
-  width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center;
-  background: var(--hueso); color: var(--noche); box-shadow: 0 10px 30px -10px rgba(0, 0, 0, .7);
-  transition: transform .25s;
-}
-.flotante svg { width: 27px; height: 27px; }
-.flotante:hover { transform: scale(1.06); }
-@media (max-width: 860px) { .flotante { display: none; } }
 
 /* Aparición suave. El contenido NUNCA depende de esto para verse:
    sin JavaScript no se oculta nada, y el script destapa todo a los 2.5 s
@@ -404,7 +394,7 @@ details p { color: var(--hueso-suave); max-width: 60ch; padding-bottom: 18px; }
 
 @media (prefers-reduced-motion: reduce) {
   .js .pal__in, .js .portada .rotulo, .js .portada__texto, .js .portada__botones, .js .telefono--portada { animation: none; opacity: 1; transform: none; }
-  .portada::before, .flotante { animation: none; }
+  .portada::before { animation: none; }
   .js .tabla-precio tbody tr { opacity: 1; transform: none; transition: none; }
   .telefono--portada img { transition: none; }
 }
@@ -717,87 +707,9 @@ section[id] { scroll-margin-top: 84px; }
 }
 
 /* ============================================================
-   EL REBAÑO (23/09) — entrada a "Qué hace". Idea del "scroll-morph-hero"
-   de 21st.dev, rehecha sin React y sin secuestrar el scroll (rebano.js).
-   Sin .rebano--vivo es una rejilla quieta: así se ve sin JavaScript, con
-   "reducir movimiento", en pantallas muy bajas o si rebano.js falla.
-   ============================================================ */
-.rebano { position: relative; padding: var(--aire) 0; border-top: 1px solid var(--linea); }
-.rebano__escenario { width: min(1160px, 90%); margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; }
-.rebano__intro { display: none; }
-.rebano__texto { max-width: 640px; }
-.rebano__texto h2 { max-width: 16ch; margin: 0 auto 18px; }
-.rebano__texto p:last-child { color: var(--hueso-suave); margin: 0; }
-.rebano__cartas { list-style: none; margin: clamp(36px, 5vw, 60px) 0 0; padding: 0; width: 100%; display: grid; grid-template-columns: repeat(10, 1fr); gap: 10px; }
-.rebano__carta { aspect-ratio: 60 / 85; border-radius: 10px; overflow: hidden; background: var(--noche-2); }
-.rebano__carta img { width: 100%; height: 100%; object-fit: cover; }
-.rebano__reverso { display: none; }
-.rebano__credito { margin: 18px 0 0; font-size: .8rem; letter-spacing: .04em; color: var(--gris); }
-@media (max-width: 860px) {
-  .rebano__cartas { grid-template-columns: repeat(4, 1fr); }
-  /* Esto es solo para la rejilla quieta (enseña 8): el modo vivo decide aparte
-     cuántas cartas anima (12 en ≤767px, 20 arriba), ver @media (max-width: 767px). */
-  .rebano:not(.rebano--vivo) .rebano__carta:nth-child(n+9) { display: none; }
-}
-
-/* Viva: la sección se alarga y el escenario se queda fijo mientras se baja.
-   Un solo alto para todos los anchos: que no cambie al cruzar 767/768px
-   (eso empujaba el contenido de abajo) y un recorrido más corto para el
-   scroll suave cuando alguien toca "Qué hace" en el menú. */
-.rebano--vivo { padding: 0; height: 190vh; height: 190svh; }
-.rebano--vivo .rebano__escenario {
-  position: sticky; top: 0; display: block; width: 100%; height: 100vh; height: 100svh; margin: 0; overflow: hidden;
-  background: radial-gradient(60% 45% at 50% 58%, rgba(208, 138, 78, .10), transparent 70%);
-}
-.rebano--vivo .rebano__intro {
-  display: block; position: absolute; left: 50%; top: 50%; width: min(300px, 56vw); margin: 0; padding-top: 36px; transform: translate(-50%, -50%);
-  font-family: var(--serif); font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.5rem); line-height: 1.2; color: var(--hueso);
-  opacity: 0; pointer-events: none; z-index: 1;
-}
-.rebano--vivo .rebano__intro span {
-  display: block; margin-top: 14px; font-family: var(--sans); font-size: .78rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gris);
-}
-.rebano--vivo .rebano__texto {
-  position: absolute; left: 50%; top: calc(72px + 5vh); width: min(640px, 90%); transform: translateX(-50%);
-  opacity: 0; pointer-events: none; z-index: 3;
-}
-.rebano--vivo .rebano__texto h2 { font-size: clamp(1.9rem, 1.2rem + 2.4vw, 3.2rem); margin-bottom: 14px; }
-.rebano--vivo .rebano__cartas { position: absolute; inset: 0; margin: 0; display: block; }
-.rebano--vivo .rebano__carta {
-  position: absolute; left: 50%; top: 50%; width: 60px; height: 85px; margin: -42.5px 0 0 -30px;
-  aspect-ratio: auto; overflow: visible; border-radius: 0; background: none; opacity: 0; perspective: 800px; z-index: 2;
-}
-.rebano--vivo.rebano--activo .rebano__carta { will-change: transform, opacity; }
-.rebano__giro { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform .6s cubic-bezier(.2, .8, .2, 1); }
-.rebano--vivo .rebano__giro img, .rebano--vivo .rebano__reverso {
-  position: absolute; inset: 0; border-radius: 9px; backface-visibility: hidden; -webkit-backface-visibility: hidden;
-}
-.rebano--vivo .rebano__giro img { background: var(--noche-2); box-shadow: 0 10px 24px -8px rgba(0, 0, 0, .7); }
-.rebano--vivo .rebano__reverso {
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; transform: rotateY(180deg);
-  background: #221E19; border: 1px solid rgba(var(--ambar-claro-rgb), .35); color: var(--hueso-suave);
-  font-size: 8px; line-height: 1.2; letter-spacing: .04em; text-align: center;
-}
-.rebano--vivo .rebano__reverso b { font-family: var(--serif); font-size: 17px; font-weight: 500; color: var(--ambar-claro); }
-@media (hover: hover) and (pointer: fine) {
-  .rebano--vivo .rebano__carta:hover .rebano__giro { transform: rotateY(180deg); }
-}
-/* En celular no hay "pasar el mouse": tocar una tarjeta la voltea y otro toque la regresa (rebano.js). */
-.rebano--vivo .rebano__carta--volteada .rebano__giro { transform: rotateY(180deg); }
-.rebano--vivo .rebano__carta { cursor: pointer; -webkit-tap-highlight-color: transparent; }
-.rebano--vivo .rebano__credito { position: absolute; left: 0; right: 0; bottom: 14px; margin: 0; text-align: center; z-index: 3; }
-/* En celular: doce tarjetas más chicas (con veinte, el círculo se encimaba). */
-@media (max-width: 767px) {
-  .rebano--vivo .rebano__carta { width: 52px; height: 74px; margin: -37px 0 0 -26px; }
-  .rebano--vivo .rebano__carta:nth-child(n+13) { display: none; }
-  .rebano--vivo .rebano__texto { top: calc(72px + 3vh); }
-  .rebano--vivo .rebano__credito { left: 5%; right: auto; bottom: 22px; text-align: left; }   /* que no choque con el botón de WhatsApp */
-}
-
-/* ============================================================
    PRECIOS (25/09, mock-up de Beto) — dos pagos, uno arriba del otro:
    1 · la puesta en marcha; 2 · el servicio a lo ancho con tres tarjetas y un
-   solo mensual/anual (confeti al pasar a anual, precios.js). El elegido del
+   solo mensual/anual (precios.js; sin confeti desde el 02/10). El elegido del
    selector lleva fondo claro, borde y palomita, no solo color (el abuelo es
    daltónico). Sin precios.js las tarjetas se ven con su precio mensual.
    ============================================================ */
@@ -867,7 +779,6 @@ section[id] { scroll-margin-top: 84px; }
 .plan__lista li { border-top: 0; padding: 8px 0 8px 26px; }
 .servicio__pie { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-top: 24px; }
 .servicio__pie .plan__pie { margin: 0; font-size: .9rem; color: var(--gris); }
-.confeti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 95; }
 @media (max-width: 860px) {
   .pago__cuerpo { grid-template-columns: minmax(0, 1fr); }
   .pago--servicio .tarjetas { grid-template-columns: minmax(0, 1fr); gap: 12px; }
@@ -890,3 +801,37 @@ section[id] { scroll-margin-top: 84px; }
   .tarjetas .tarjeta { grid-template-columns: minmax(0, 1fr); }
   .tarjetas .tarjeta__per { text-align: left; }
 }
+
+/* ============================================================
+   SIN ANIMACIONES DE ADORNO (02/10/2026)
+   Quien usa la página tiene unos 60 años: el rebaño, el teléfono que cambiaba
+   de pantalla al bajar, el título palabra por palabra, el confeti y la barra
+   de avance hacían que "actuara raro al scrollear". Todo queda quieto y a la
+   vista; solo quedan los cambios de color al pasar el ratón.
+   ============================================================ */
+.js .pal__in, .js .portada .rotulo, .js .portada__texto, .js .portada__botones,
+.js .telefono--portada, .probar__punto { animation: none; opacity: 1; transform: none; }
+.portada::before { animation: none; opacity: 1; }   /* sin tocar su transform: lo centra */
+html { scroll-behavior: auto; }
+.js .aparece, .js .tabla-precio tbody tr, .js .pasos li { opacity: 1; transform: none; transition: none; }
+
+/* Qué hace: cada paso con su propia captura, sin teléfono fijo */
+.historia__rejilla { grid-template-columns: 1fr; }
+.paso, .js .paso { min-height: 0; max-width: none; opacity: 1; display: grid; grid-template-columns: 1fr minmax(220px, 300px);
+  gap: 18px clamp(30px, 6vw, 90px); align-items: center; padding: 48px 0; }
+.paso > .paso__num, .paso > h3, .paso > p { grid-column: 1; }
+.paso__foto, .js .paso__foto { grid-column: 2; grid-row: 1 / span 3; position: static; width: 100%; height: auto;
+  overflow: visible; clip: auto; white-space: normal; margin: 0; }
+@media (max-width: 860px) {
+  .paso, .js .paso { grid-template-columns: 1fr; padding: 40px 0; }
+  .paso__foto, .js .paso__foto { grid-column: 1; grid-row: auto; width: min(280px, 78vw); margin: 26px auto 0; }
+}
+
+/* Contacto: probar la demo ANTES de llenar nada */
+.probar-antes { margin-top: 26px; padding: 20px 22px; border: 1px solid var(--linea); border-radius: 14px; }
+.probar-antes p { margin: 0 0 14px; color: var(--hueso-suave); }
+.ventana-barra { min-height: 52px; }
+.ventana-cerrar { min-height: 44px; }
+.ventana-quiero { margin-left: auto; margin-right: 10px; color: var(--noche); background: var(--ambar-claro); border-radius: 999px; padding: 0 16px; min-height: 44px; display: inline-flex; align-items: center; font: 600 .85rem var(--sans); text-decoration: none; white-space: nowrap; }
+/* 320 px: la marca con "control ganadero" y el botón no caben juntos (qa 02/10) */
+@media (max-width: 360px) { .marca__desc { display: none; } }
