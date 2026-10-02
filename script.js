@@ -78,6 +78,70 @@ function marcarInvalido(id, invalido) {
 
 let enviando = false;
 
+/* ---------- Para tu rancho (02/10) ----------
+   Con lo que va contestando, enseña qué escalón del servicio le tocaría y qué
+   partes de la app le sirven. Solo lo que la app ya hace (sección "Qué hace").
+   Las cifras salen de las tarjetas de #plan (data-mensual), no se repiten aquí. */
+
+// Cabezas: solo dígitos, sin adivinar. Se aceptan espacios y comas de MILES bien
+// puestas ("1,200", "12 500"); "1,5", "-10" o "1.5" son error explícito, nunca 15.
+function leerCabezas() {
+  const t = limpio('#f-cabezas', 20);
+  if (!/^[1-9]\d{0,2}([ ,]\d{3})*$|^[1-9]\d{0,6}$/.test(t)) return null;   // sin ceros a la izquierda
+  const n = Number(t.replace(/[ ,]/g, ''));
+  return n > 0 && n <= 999999 ? n : null;
+}
+const mensuales = Array.from(document.querySelectorAll('#plan .tarjeta')).map((t) => Number(t.dataset.mensual));
+function escalon(n) {
+  const pesos = (x) => '$' + x.toLocaleString('es-MX');
+  if (n > 1000) return { texto: 'más de 1,000 cabezas: se cotiza aparte', corto: 'se cotiza aparte' };
+  const i = n <= 200 ? 0 : n <= 500 ? 1 : 2;
+  const rango = ['hasta 200 cabezas', 'de 201 a 500 cabezas', 'de 501 a 1,000 cabezas'][i];
+  return { texto: pesos(mensuales[i]) + ' al mes más IVA (' + rango + ')', corto: pesos(mensuales[i]) + ' al mes más IVA' };
+}
+const SIRVE = {
+  'Cría': 'Te sirve sobre todo: cuáles están cargadas o por parir, los partos y las crías, las sincronizaciones y el plan sanitario del año.',
+  'Engorda': 'Te sirve sobre todo: los pesos de cada animal con los kilos por día, y el plan sanitario del año.',
+  'Cría y engorda': 'Te sirve todo: lo reproductivo (cargadas, partos, crías) y los pesos con los kilos por día, más el plan sanitario.',
+  'Leche': 'Te sirve para lo reproductivo, la salud y el plan sanitario de cada vaca, y la ficha con su historia.',
+  'Otro': 'La ficha de cada animal con su historia, los pendientes de la semana, el plan sanitario y el inventario.',
+};
+const QUIEN = {
+  'Yo mismo': 'Tú capturas desde tu teléfono, y cada persona que agregues tiene su propia cuenta.',
+  'Alguien del rancho': 'Quien captura tiene su propia cuenta y ve solo lo que le toca; tú ves todo.',
+  'Varias personas': 'Cada persona tiene su propia cuenta y ve solo lo que le toca; hay una capacitación para cada tipo de cuenta.',
+  'Todavía no sé': 'Lo vemos contigo: cada persona que use la app tiene su propia cuenta.',
+};
+const paraTi = $('#para-ti');
+const leerParaTi = $('#para-ti-leer');
+let ultimoAnuncio = '', reloj = null;
+function pintarParaTi() {
+  const n = leerCabezas();
+  const tipo = limpio('#f-tipo', 40);
+  const quien = limpio('#f-quien', 40);
+  clearTimeout(reloj);            // un anuncio pendiente de un número que ya se borró no debe sonar
+  if (n === null) {               // sin un número válido no se enseña ningún precio
+    paraTi.hidden = true;
+    return;
+  }
+  const e = escalon(n);
+  $('#para-ti-precio').textContent = n > 1000 ? 'Con más de 1,000 cabezas, el servicio se cotiza aparte.' : 'Servicio con pago mensual: ' + e.texto + '.';
+  $('#para-ti-sirve').textContent = SIRVE[tipo] || '';
+  $('#para-ti-quien').textContent = QUIEN[quien] || '';
+  paraTi.hidden = false;
+  // Al lector de pantalla solo un resumen, al dejar de escribir, y sin repetir.
+  reloj = setTimeout(() => {
+    const anuncio = 'Para tu rancho: ' + e.corto + '.';
+    if (anuncio !== ultimoAnuncio) { leerParaTi.textContent = anuncio; ultimoAnuncio = anuncio; }
+  }, 900);
+}
+if (paraTi && mensuales.length === 3 && mensuales.every((m) => m > 0)) {
+  ['#f-cabezas', '#f-tipo', '#f-quien'].forEach((id) => {
+    $(id).addEventListener('input', pintarParaTi);
+    $(id).addEventListener('change', pintarParaTi);
+  });
+}
+
 formulario.addEventListener('submit', (e) => {
   e.preventDefault();
 
@@ -89,11 +153,9 @@ formulario.addEventListener('submit', (e) => {
   if (respaldo) respaldo.textContent = '';
   ['#f-cabezas', '#f-lugar', '#f-nombre'].forEach((id) => marcarInvalido(id, false));
 
-  // Cabezas: solo dígitos, sin adivinar. Antes un .replace(/\D/g,'') convertía
-  // "-10" en 10 y "1.5" en 15 sin avisar; ahora se aceptan espacios y comas de
-  // miles (por si teclea "1,200") pero cualquier otra cosa es error explícito.
-  const cabezasCrudo = limpio('#f-cabezas', 20).replace(/[ ,]/g, '');
-  const cabezasValidas = /^\d{1,6}$/.test(cabezasCrudo) && Number(cabezasCrudo) > 0;
+  const cabezas = leerCabezas();
+  const cabezasCrudo = cabezas === null ? '' : String(cabezas);
+  const cabezasValidas = cabezas !== null;
 
   const datos = {
     nombre: limpio('#f-nombre', 80),
@@ -101,6 +163,7 @@ formulario.addEventListener('submit', (e) => {
     lugar: limpio('#f-lugar', 80),
     cabezas: cabezasCrudo,
     tipo: limpio('#f-tipo', 40),
+    quien: limpio('#f-quien', 40),
     nota: recortarTexto($('#f-nota').value.replace(/[\x00-\x09\x0b-\x1f\x7f]/g, ' ').trim(), 400),
   };
 
@@ -133,6 +196,8 @@ formulario.addEventListener('submit', (e) => {
     'Lugar: ' + datos.lugar,
     'Cabezas: ' + datos.cabezas,
     datos.tipo ? 'Se dedica a: ' + datos.tipo : null,
+    datos.quien ? 'Quién va a capturar: ' + datos.quien : null,
+    'Servicio de referencia: ' + escalon(cabezas).texto,
     datos.nota ? '\n' + datos.nota : null,
   ].filter((l) => l !== null);
 

@@ -823,3 +823,18 @@ html { scroll-behavior: auto; }
 /* 320 px: la marca con "control ganadero" y el botón no caben juntos (qa 02/10) */
 @media (max-width: 360px) { .marca__desc { display: none; } }
 .confeti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 95; }
+
+/* A2 (02/10): línea de tiempo de la puesta en marcha y "Para tu rancho" del formulario */
+.tiempo { list-style: none; padding: 0; margin: 10px 0 14px; display: grid; gap: 14px; counter-reset: paso; }
+.tiempo li { display: grid; grid-template-columns: 2.2em 1fr; gap: 4px 14px; align-items: baseline; }
+.tiempo li::before { counter-increment: paso; content: counter(paso); grid-row: span 2; font-family: var(--serif); font-style: italic; font-size: 1.4rem; color: var(--ambar-claro); }
+.tiempo__cuando { font-size: 1.05rem; color: var(--hueso); }
+.tiempo li span { color: var(--hueso-suave); }
+.tiempo__siempre { margin: 0 0 26px; color: var(--hueso-suave); font-size: .98rem; }
+.para-ti { margin: 6px 0 18px; padding: 16px 18px; border: 1px solid var(--ambar-claro); border-radius: 14px; }
+.para-ti p { margin: 0 0 8px; }
+.para-ti__titulo { font-weight: 600; color: var(--ambar-claro); }
+.para-ti__precio { font-size: 1.1rem; color: var(--hueso); }
+.para-ti__sirve, .para-ti__quien { color: var(--hueso-suave); }
+.para-ti__nota { font-size: 1rem; color: var(--hueso-suave); margin-bottom: 0 !important; }
+.para-ti__sirve:empty, .para-ti__quien:empty { display: none; }

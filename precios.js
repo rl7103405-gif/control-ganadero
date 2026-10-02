@@ -21,7 +21,6 @@
     cifra: t.querySelector('.tarjeta__cifra'),
     per: t.querySelector('.tarjeta__per'),
     nota: t.querySelector('.tarjeta__nota'),
-    aparte: t.querySelector('.tarjeta__aparte'),   // el "más de 1,000" dentro de la tercera tarjeta
   }));
   if (!periodo || !leer || !anual || !tarjetas.length || tarjetas.some((t) => !t.mensual || !t.cifra || !t.per || !t.nota)) return;
 
@@ -59,12 +58,6 @@
         t.per.textContent = 'al mes, más IVA';
         t.nota.textContent = `${pesos(alAnio)} al año, pagado por adelantado. Te ahorras ${pesos(ahorro)}.`;
         let frase = `${t.titulo}: ${pesos(alAnio / 12)} al mes pagando el año por adelantado, ${pesos(alAnio)} al año`;
-        // tercera tarjeta: aclarar que de 1,000 cabezas para arriba el precio sube (aparte).
-        if (t.aparte) {
-          const aparteAnual = Number(t.aparte.dataset.mensual) * 12 * (1 - DESCUENTO_ANUAL);
-          t.aparte.textContent = `${pesos(aparteAnual / 12)} al mes (${pesos(aparteAnual)} al año)`;
-          frase += `, de 501 a 1,000; con más de 1,000, ${pesos(aparteAnual / 12)} al mes, ${pesos(aparteAnual)} al año`;
-        }
         frase += `. Te ahorras ${pesos(ahorro)}`;
         frases.push(frase);
       } else {
@@ -72,15 +65,11 @@
         t.per.textContent = 'al mes, más IVA';
         t.nota.textContent = '';
         let frase = `${t.titulo}: ${pesos(t.mensual)} al mes`;
-        if (t.aparte) {
-          const aparteMensual = Number(t.aparte.dataset.mensual);
-          t.aparte.textContent = `${pesos(aparteMensual)} al mes`;
-          frase += ` de 501 a 1,000; con más de 1,000, ${pesos(aparteMensual)} al mes`;
-        }
         frases.push(frase);
       }
     }
-    if (anunciar) leer.textContent = (a ? 'Pago anual por adelantado, más IVA. ' : 'Pago mensual, más IVA. ') + frases.join('. ') + '.';
+    // Más de 1,000 cabezas se cotiza aparte (02/10): va dicho en el anuncio, sin cifra.
+    if (anunciar) leer.textContent = (a ? 'Pago anual por adelantado, más IVA. ' : 'Pago mensual, más IVA. ') + frases.join('. ') + '. Con más de 1,000 cabezas, se cotiza aparte.';
   }
 
   function festejar() {

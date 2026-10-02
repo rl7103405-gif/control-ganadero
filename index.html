@@ -29,7 +29,7 @@
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23151310'/%3E%3Cpath d='M11 27V5M11 17.5 22 8.5M11 24.5 22 15.5' fill='none' stroke='%23E7A56B' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
 
-<link rel="stylesheet" href="estilos.css?v=35">
+<link rel="stylesheet" href="estilos.css?v=36">
 </head>
 <body>
 
@@ -238,7 +238,7 @@
     <!-- 25/09 (mock-up de Beto): dos pagos, uno arriba del otro. 1 · la puesta en marcha;
          2 · el servicio a lo ancho, con tres tarjetas y un solo mensual/anual (confeti al pasar a
          anual, precios.js). La tercera tarjeta agrupa 501–1,000 ($900) y dice aparte el precio de
-         más de 1,000 ($1,200): así el contrato (cuatro escalones) y la página dicen lo mismo.
+         más de 1,000: se cotiza aparte.
          Sin precios.js las tarjetas se ven con su precio mensual y sin el selector. -->
     <div class="pago pago--marcha">
       <div class="pago__cabeza">
@@ -264,6 +264,15 @@
           <p class="marcha__nota">El número exacto depende de cuánto haya que ordenar y capturar.</p>
         </div>
       </div>
+      <!-- 02/10: la línea de tiempo sale del contrato del 18/09 (cláusulas segunda, cuarta y
+           décima). Nada de "primera semana": el contrato da hasta 30 días. -->
+      <p class="marcha__pregunta">Cómo va, paso a paso:</p>
+      <ol class="tiempo">
+        <li><b class="tiempo__cuando">Firmas y nos das tu información</b><span>La de tu ganado, como la tengas: libreta, Excel o papeles.</span></li>
+        <li><b class="tiempo__cuando">En hasta 30 días después de recibirla</b><span>Capturamos tu ganado, revisas con nosotros el censo, creamos la cuenta de cada persona y damos una capacitación para cada tipo de cuenta. Te la entregamos funcionando.</span></li>
+        <li><b class="tiempo__cuando">Los 3 meses siguientes</b><span>Ajustamos sin costo lo que ya hace la app para que le quede a tu rancho. Si pagaste de contado, en esos mismos 3 meses no pagas el servicio.</span></li>
+      </ol>
+      <p class="tiempo__siempre">Y siempre, mientras tengas el servicio: los errores se arreglan sin costo, y a tus dudas te contestamos por mensaje en máximo 2 días hábiles.</p>
       <!-- 25/09 (Beto): dos formas de pagar la puesta en marcha, lado a lado. Reemplaza los
            "tres meses sin intereses con tarjeta": el contrato con la abogada debe cambiar igual. -->
       <p class="marcha__pregunta">¿Cómo la pagas? Con el ejemplo de 200 cabezas:</p>
@@ -312,11 +321,11 @@
           <p class="tarjeta__nota"></p>
         </li>
         <li class="tarjeta" data-mensual="900">
-          <h4 class="tarjeta__titulo">Más de 500 cabezas</h4>
+          <h4 class="tarjeta__titulo">De 501 a 1,000 cabezas</h4>
           <p class="tarjeta__monto"><span class="tarjeta__signo">$</span><span class="tarjeta__cifra">900</span></p>
           <p class="tarjeta__per">al mes, más IVA</p>
           <p class="tarjeta__nota"></p>
-          <p class="tarjeta__extra">De 501 a 1,000 cabezas. Con más de 1,000, <strong class="tarjeta__aparte" data-mensual="1200">$1,200 al mes</strong>.</p>
+          <p class="tarjeta__extra">Con más de 1,000 cabezas, <strong>se cotiza aparte</strong>.</p>
         </li>
       </ul>
       <ul class="incluye plan__lista">
@@ -388,6 +397,22 @@
         <option>Otro</option>
       </select>
 
+      <label for="f-quien">¿Quién va a capturar? <span class="opcional">(opcional)</span></label>
+      <select id="f-quien" name="quien">
+        <option value="">Elige una opción</option>
+        <option>Yo mismo</option>
+        <option>Alguien del rancho</option>
+        <option>Varias personas</option>
+        <option>Todavía no sé</option>
+      </select>
+      <div class="para-ti" id="para-ti" hidden>
+        <p class="para-ti__titulo">Para tu rancho</p>
+        <p class="para-ti__precio" id="para-ti-precio"></p>
+        <p class="para-ti__sirve" id="para-ti-sirve"></p>
+        <p class="para-ti__quien" id="para-ti-quien"></p>
+        <p class="para-ti__nota">Es una referencia según las cabezas que escribiste; no cuentan las vendidas ni las muertas. La puesta en marcha va aparte.</p>
+      </div>
+      <p class="oculto-visual" id="para-ti-leer" aria-live="polite" aria-atomic="true"></p>
       <label for="f-lugar">Municipio y estado</label>
       <input id="f-lugar" name="lugar" maxlength="80" required>
 
@@ -421,8 +446,8 @@
 </footer>
 
 
-<script src="script.js?v=17" defer></script>
+<script src="script.js?v=19" defer></script>
 <script src="assets/confetti.min.js?v=2" defer></script>
-<script src="precios.js?v=8" defer></script>
+<script src="precios.js?v=9" defer></script>
 </body>
 </html>
